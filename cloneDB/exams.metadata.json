@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"CNPM.exams"}],"uuid":"3f5e53225cd94cb8a0bfd5ff17ba4909"}
