@@ -1,0 +1,294 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.active1
+{
+  border: 1px solid #06A146;
+  border-radius: 3px;
+  color: white !important;
+}
+.menu
+{
+  background: black;
+}
+.changetext
+{
+  position: relative;
+  animation:myAnimation 1.5s ease-out;
+  top: 0px;
+  opacity:1;
+  color: white !important;
+}
+.changetext:hover
+{
+  color:#06A146 !important;
+}
+.active
+{
+  color: #06A146 !important;
+}
+@keyframes myAnimation {
+    0% { top: -20px;opacity: 0 }
+    50% { opacity: 0.3;}
+    100% { top:0px;}
+}
+.loigioithieu{
+  margin-left:50px;
+  margin-right:50px;
+  color:#6D6D6D;
+  margin-top:30px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+.hsg{
+    position:relative;
+    margin-top:70px;
+}
+.titlehsg{
+    display:block;
+    width:250px;
+    position:absolute;
+    top:-30px;
+    left:40%;
+    font-size:37px;
+    text-align:center;
+    background:white;
+}
+.gachngang{
+    margin-top:30px;
+    border-top:2px solid #6D6D6D;
+    margin-left:130px;
+    margin-right:130px;
+}
+@media only screen and (max-width: 1024px) 
+{
+  .gachngang{display: none;}
+  .hsg
+  {
+    margin-top: 20px;
+  }
+  .titlehsg{
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    left: 0px;
+    top: 0px;
+  }
+  .loigioithieu{font-size: 15px}
+}
+@media only screen and (max-width: 320px)
+{
+  .snip1482
+  {
+    display: block;
+    margin: 0 auto;
+  }
+} 
+.snip1482 {
+  position: relative;
+  margin: 10px 20px;
+  min-width: 230px;
+  max-width: 295px;
+  min-height: 220px;
+  width:100%;
+  color:#ffffff;
+  text-align: right;
+  line-height: 1.4em;
+  background-color: #1a1a1a;
+  font-size: 16px;
+}
+@media only screen and (max-width: 600px) 
+{
+  .titlehsg{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center;
+  }
+  .snip1482
+  {
+    display: block;
+    margin: 10px auto;
+  }
+  .loigioithieu{font-size: 15px;margin-top: 5px}
+}
+.snip1482 * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: all 0.35s ease;
+  transition: all 0.35s ease;
+}
+.snip1482 img {
+  position: absolute;
+  right: 0%;
+  top: 50%;
+  opacity: 1;
+  width: 100%;
+  -webkit-transform: translate(0%, -50%);
+  transform: translate(0%, -50%);
+}
+.snip1482 figcaption {
+  position: absolute;
+  width: 50%;
+  top: 50%;
+  left: 0;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  padding: 20px 0 20px 20px;
+}
+.snip1482 h6,
+.snip1482 p {
+  margin: 0;
+  width: 100%;
+  -webkit-transform: translateX(20px);
+  transform: translateX(20px);
+  opacity: 0;
+}
+.snip1482 h6 {
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.snip1482 p {
+  font-size: 0.8em;
+}
+.snip1482 a {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+}
+.snip1482:hover img{
+  width: 55%;
+  right: -10%;
+}
+.snip1482:hover figcaption h6,
+.snip1482:hover figcaption p
+{
+  -webkit-transform: translateX(0px);
+  transform: translateX(0px);
+  opacity: 1;
+}
+.tabbaigiang
+{
+  margin-top: 80px;
+  width: 98%;
+}
+.traitabbaigiang
+{
+  height:550px;
+  overflow: auto;
+  padding-left: 20px;
+}
+@media only screen and (max-width: 768px)
+{
+  .active1{
+    border: 0px;
+  }
+  .tabbaigiang
+  {
+    width: 100%;
+  }
+  .traitabbaigiang
+  {
+    overflow: visible;
+    height: auto;
+  }
+}
+#changescroll::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+} 
+#changescroll::-webkit-scrollbar-thumb {
+    background-color: #000000;
+}
+#changescroll::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+.chuong{
+  font-weight: bold;
+  font-size: 23px;
+}
+.bai
+{
+  color: black;
+}
+.bai:hover,.bai.active
+{
+  background: green !important;
+  color: white !important;
+  border-radius: 0px;
+}
+.phaitabbaigiang
+{
+  margin-top: 30px;
+}
+.video
+{
+  display: block;
+  margin: 30px auto;
+}
+.tags
+{
+  color: white;
+  background: green;
+  padding: 3px;
+  margin-right: 5px;
+}
+textarea
+{
+  width: 100%;
+}
+textarea:focus,.loaidethi:focus
+{
+  outline: none !important;
+  outline-width: 0 !important;
+  outline-style:none;     
+  box-shadow: none;
+}
+.dethi
+{
+  margin-top:90px;
+}
+.anhdethi
+{
+  width: 100%;
+}
+.chitietdethi
+{
+  margin-top: 30px;
+}
+.tieudebaigiang{
+  color: black;
+}
