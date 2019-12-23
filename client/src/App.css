@@ -41,13 +41,12 @@
 {
   background: black;
 }
-.changetext
+.changetext,.changedropdown
 {
+  color: white !important;
   position: relative;
   animation:myAnimation 1.5s ease-out;
   top: 0px;
-  opacity:1;
-  color: white !important;
 }
 .changetext:hover
 {

@@ -22,7 +22,7 @@ class Hocsinhgioi extends Component{
     	<Container>
     	<Row>
     	<Col>
-    	<figure class="snip1482">
+    	<figure className="snip1482">
 		  <figcaption>
 		    <h6>Nguyễn Tiến Thắng</h6>
 		    <p>- Thủ khoa đầu vào Đại học Y Hà Nội<br />
@@ -32,7 +32,7 @@ class Hocsinhgioi extends Component{
 		</figure>
 		</Col>
 		<Col>
-		<figure class="snip1482">
+		<figure className="snip1482">
 		  <figcaption>
 		    <h6>Nguyễn Quý Thắng</h6>
 		    <p>- Huy chương vàng quốc tế sinh học 2018<br />
@@ -42,7 +42,7 @@ class Hocsinhgioi extends Component{
 		</figure>
 		</Col>
 		<Col>
-		<figure class="snip1482">
+		<figure className="snip1482">
 		  <figcaption>
 		    <h6>Nguyễn Thị Kim Chi</h6>
 		    <p>- Thủ khoa Đại học khối A năm 2018<br />
@@ -52,7 +52,7 @@ class Hocsinhgioi extends Component{
 		</figure>
 		</Col>
 		<Col>
-		<figure class="snip1482 cuoi">
+		<figure className="snip1482 cuoi">
 		  <figcaption>
 		    <h6>Nguyễn Trung Lộ</h6>
 		    <p>- Thủ khoa đầu vào Đại học Y HCM<br />
