@@ -19,6 +19,7 @@ const lessonSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    video : String,
     viewNumber: {
         type: Number,
         default: 0
