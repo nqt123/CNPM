@@ -58,7 +58,7 @@ class Dashboard extends Component {
                                     </NavItem>
                                     <NavItem eventKey="exam">
                                         <NavIcon>
-                                            <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} />
+                                            <i className="fa fa-fw fa-folder" style={{ fontSize: '1.75em' }} />
                                         </NavIcon>
                                         <NavText>
                                             Quản lý đề thi

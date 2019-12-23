@@ -42,7 +42,7 @@ class LessonManagement extends React.Component {
                 <div>
                     <Form inline style={{ marginLeft: '-0.5%' }}>
                         <InputGroup>
-                            <FormControl style={{ width: 300 }} type="text" placeholder="Tên chương, tên bài giảng" className="ml-sm-2" size="sm" />
+                            <FormControl style={{ width: 300 }} type="text" placeholder="Tên bài giảng" className="ml-sm-2" size="sm" />
                             <InputGroup.Append>
                                 <Button size="sm"><i className="fa fa-search" aria-hidden="true"></i></Button>
                             </InputGroup.Append>
@@ -55,7 +55,6 @@ class LessonManagement extends React.Component {
                             <tr>
                                 <th>STT</th>
                                 <th>Tên bài giảng</th>
-                                <th>Tên chương</th>
                                 <th>Số lượt đã xem</th>
                                 <th>Số lượt tải về</th>
                                 <th></th>
@@ -66,7 +65,6 @@ class LessonManagement extends React.Component {
                                 <tr>
                                     <td>1</td>
                                     <td>{l.title}</td>
-                                    <td>Chương 1</td>
                                     <td>{l.viewNumber}</td>
                                     <td>{l.downloaded}</td>
                                     <td style={{ textAlign: 'center' }}>
