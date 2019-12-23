@@ -5,16 +5,17 @@ import Baigiang from './components/Baigiang';
 import Hoclieu from './components/Hoclieu';
 import Kiemtra from './components/Kiemtra';
 import React from 'react';
+import Dashboard from './components/admin/Dashboard';
 const routes=[
 	{
 		path:"/",
 		exact:true,
-		main:()=><Home />
+		main:({location})=><Home location={location}/>
 	},
 	{
 		path:"/bai-giang",
 		exact:false,
-		main:()=><Baigiang/>
+		main:({location})=><Baigiang location={location}/>
 	},
 	{
 		path:"/hoc-lieu",
@@ -29,12 +30,17 @@ const routes=[
 	{
 		path:"/dang-nhap",
 		exact:false,
-		main:()=><SignIn />
+		main:({history,location})=><SignIn history={history} location={location}/>
 	},
 	{
 		path:"/dang-ki",
 		exact:false,
-		main:()=><SignUp />
+		main:({history})=><SignUp history={history}/>
+	},
+	{
+		path: "/admin",
+		exact: false,
+		main:() => <Dashboard />
 	}
 ];
 export default routes;

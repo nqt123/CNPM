@@ -1,9 +1,9 @@
 import React,{Component} from 'react';
-import {Nav,Navbar,FormControl,Form,Button,InputGroup} from 'react-bootstrap';
+import {Nav,Navbar,FormControl,Form,Button,InputGroup,NavDropdown} from 'react-bootstrap';
 import { BrowserRouter as Router, Route,Switch,Link } from "react-router-dom";
 import './../App.css';
 import logo from './../images/logo.png';
-const MenuLink=({ label, to, activeOnlyWhenExact,icon })=> {
+const MenuLink=({ label, to, activeOnlyWhenExact})=> {
   return (
     <Route
       path={to}
@@ -16,33 +16,6 @@ const MenuLink=({ label, to, activeOnlyWhenExact,icon })=> {
     />
   );
 }
-const menus=[
-  {
-    name:'Trang chủ',
-    to:'/',
-    exact:true
-  },
-  {
-    name:'Bài giảng',
-    to:'/bai-giang',
-    exact:false
-  },
-  {
-    name:'Học liệu',
-    to:'/hoc-lieu',
-    exact:false
-  },
-  {
-    name:'Kiểm tra',
-    to:'/kiem-tra',
-    exact:false
-  },
-  {
-    name:'Đăng nhập',
-    to:'/dang-nhap',
-    exact:false
-  }
-];
 class Menus extends Component{
   render(){
   return (
@@ -52,7 +25,11 @@ class Menus extends Component{
           <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto">
-              {this.showMenus(menus)}
+              <MenuLink label="Trang chủ" to='/' activeOnlyWhenExact={true} />
+              <MenuLink label="Bài giảng" to='/bai-giang' activeOnlyWhenExact={false} />
+              <MenuLink label="Học liệu" to='/hoc-lieu' activeOnlyWhenExact={false} />
+              <MenuLink label="Kiểm tra" to='/kiem-tra' activeOnlyWhenExact={false} />
+              <MenuLink label="Đăng nhập" to='/dang-nhap' activeOnlyWhenExact={false} />
             </Nav>
             <Form inline>
               <InputGroup>
@@ -67,22 +44,5 @@ class Menus extends Component{
     </React.Fragment>
   );
 }
-showMenus=menus=>{
-      var result=null;
-      if(menus.length>0)
-      {
-        result=menus.map((menu,index)=>{
-          return(
-            <MenuLink
-              key={index}
-              label={menu.name}
-              to={menu.to}
-              activeOnlyWhenExact={menu.exact}
-            />
-          );
-        }); 
-      }
-      return result;
-  }
 }
 export default Menus;

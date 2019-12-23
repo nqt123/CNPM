@@ -13,9 +13,64 @@ import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import styles from './../styles.js';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import Swal from 'sweetalert2';
 class SignIn extends Component{
+  constructor(props)
+  {
+    super(props);
+    this.state={
+      username:'',
+      password:''
+    }
+  }
+  handleLogin=(e)=>{
+    e.preventDefault();
+    const {username,password}=this.state;
+    if(!username||!password)
+    {
+     return Swal.fire({
+              icon: 'error',
+              title: 'Thiếu tài khoản hoặc mật khẩu',
+              text: 'Vui lòng điền đầy đủ thông tin!',
+      });
+
+    }
+    fetch('http://localhost:5000/users/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',  
+        },
+      body: JSON.stringify({
+        username:this.state.username,
+        password:this.state.password
+      })
+    }).then(res => res.json())
+      .then(respond => 
+        {
+          var token=respond.token;
+          if(!token)
+          {
+             return Swal.fire({
+              icon: 'error',
+              title: 'Đăng nhập không thành công',
+              text: 'Vui lòng kiểm tra lại tài khoản hoặc mật khẩu!',
+            });
+          }
+          this.props.history.push({pathname:'/',state:{users:respond}})
+        })
+      .catch(err => console.log(err));
+  }
+  onChange=(event)=>{
+    var target=event.target;
+    var name=target.name;
+    var value=target.value;
+    this.setState({
+        [name]:value
+    });
+  }
   render(){
   	const {classes}=this.props;
+    var {username,password}=this.state;
   return (
 	 <Container component="main" maxWidth="xs" className={classes.changeForm}>
       <CssBaseline />
@@ -37,6 +92,8 @@ class SignIn extends Component{
             autoComplete="text"
             autoFocus
             classes={{root:classes.root}}
+            value={username}
+            onChange={this.onChange}
           />
           <TextField
             variant="outlined"
@@ -48,6 +105,9 @@ class SignIn extends Component{
             id="password"
             autoComplete="current-password"
             classes={{root:classes.root}}
+            value={password}
+            onChange={this.onChange}
+
           />
           <FormControlLabel
             control={<Checkbox color="default" value="remember" className={classes.colorGreen}/>}
@@ -59,6 +119,7 @@ class SignIn extends Component{
             fullWidth
             variant="contained"
             className={classes.submit}
+            onClick={this.handleLogin}
           >
             Đăng nhập <ExitToAppIcon />
           </Button>

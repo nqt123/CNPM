@@ -36,8 +36,8 @@ class Home extends Component{
     } 
   };
   render(){
-  	var {classes}=this.props; 
-    var result=this.state.display ? <Menu/>:<Menu1/>
+  	var {classes,location}=this.props;
+    var result=this.state.display ? <Menu nguoidung={location.state}/>:<Menu1/>
   return(
     <React.Fragment>
     	<div className={classes.paper}>
