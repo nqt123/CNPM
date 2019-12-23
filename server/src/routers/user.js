@@ -5,7 +5,14 @@ const auth = require("../middleware/auth");
 
 router.get("/users", auth, async (req, res) => {
   try {
-    const users = await User.find({});
+    const userField = {};
+    if (req.query.username) {
+      userField["username"] = { $regex: req.query.username, $options: "gi" };
+    }
+    if (req.query.email) {
+      userField["email"] = { $regex: req.query.email, $options: "gi" };
+    }
+    const users = await User.find(userField);
     res.status(201).send(users);
   } catch (error) {
     res.status(404).send(error);
@@ -52,23 +59,23 @@ router.get("/users/:id", async (req, res) => {
   }
 });
 router.post("/users/logout", auth, async (req, res) => {
-    try {
-        req.user.tokens = req.user.tokens.filter((token) => token.token != req.token)
-        await req.user.save()
-        res.send(req.user)
-    } catch (error) {
-        res.status(500).send()
-    }
+  try {
+    req.user.tokens = req.user.tokens.filter(token => token.token != req.token);
+    await req.user.save();
+    res.send(req.user);
+  } catch (error) {
+    res.status(500).send();
+  }
 });
-router.post('/users/logoutAll', auth, async (req,res)=>{
-    try {
-        req.user.tokens = []
-        await req.user.save()
-        res.status(200).send(req.user)
-    } catch (error) {
-        res.status(500).send({error : error})
-    }
-})
+router.post("/users/logoutAll", auth, async (req, res) => {
+  try {
+    req.user.tokens = [];
+    await req.user.save();
+    res.status(200).send(req.user);
+  } catch (error) {
+    res.status(500).send({ error: error });
+  }
+});
 router.patch("/users/:id", async (req, res) => {
   const updates = Object.keys(req.body);
   try {

@@ -31,12 +31,16 @@ const lessonSchema = new mongoose.Schema({
         type : Boolean,
         default : true
     },
+    order : Number,
     category: [],
     relatedQuestion: [],
     attachedFiles: [],
     attachedVideos: [],
     attachedAudio: [],
-    section: mongoose.Types.ObjectId,
+    section: {
+        order : Number,
+        title : String,
+    },
     tag: [],
     title: {
         type: String,
