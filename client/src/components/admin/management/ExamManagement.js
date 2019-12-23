@@ -36,7 +36,7 @@ class ExamManagement extends React.Component {
                 <Button size="sm" style={{ width: 100, marginTop: 50 }} onClick={() => this.openModal()}>
                     <i className="fa fa-plus" aria-hidden="true"></i>
                 </Button>
-                <Modal visible={this.state.visible} width="80%" height="80%" effect="fadeInDown">
+                <Modal visible={this.state.visible} width="50%" height="80%" effect="fadeInDown">
                     <div>
                         <a href="javascript:void(0);" onClick={() => this.closeModal()}>Close</a>
                     </div>

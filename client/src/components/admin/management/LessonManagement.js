@@ -39,7 +39,7 @@ class LessonManagement extends React.Component {
                 <div style={{ width: '100%', borderTop: 0, borderLeft: 0, borderRight: 0, borderBottom: 2, borderStyle: 'solid', marginBottom: 20 }}>
                     <h2>Quản lý bài giảng</h2>
                 </div>
-                <div>
+                {/* <div>
                     <Form inline style={{ marginLeft: '-0.5%' }}>
                         <InputGroup>
                             <FormControl style={{ width: 300 }} type="text" placeholder="Tên bài giảng" className="ml-sm-2" size="sm" />
@@ -48,17 +48,17 @@ class LessonManagement extends React.Component {
                             </InputGroup.Append>
                         </InputGroup>
                     </Form>
-                </div>
+                </div> */}
                 <div style={{ marginTop: 20 }}>
                     <Table striped bordered hover>
                         <thead>
                             <tr>
-                                <th>STT</th>
+                                <th>Bài</th>
                                 <th>Tên bài giảng</th>
                                 <th>Tên chương</th>
                                 <th>Số lượt đã xem</th>
                                 <th>Số lượt tải về</th>
-                                <th></th>
+                                {/* <th></th> */}
                             </tr>
                         </thead>
                         <tbody>
@@ -69,11 +69,11 @@ class LessonManagement extends React.Component {
                                     <td>{l.section.title}</td>
                                     <td>{l.viewNumber}</td>
                                     <td>{l.downloaded}</td>
-                                    <td style={{ textAlign: 'center' }}>
+                                    {/* <td style={{ textAlign: 'center' }}>
                                         <Button size="sm" onClick={() => this.openModal()}>
                                             <i class="fa fa-wrench" aria-hidden="true"></i>
                                         </Button>
-                                    </td>
+                                    </td> */}
                                 </tr>
                             )}
                         </tbody>
