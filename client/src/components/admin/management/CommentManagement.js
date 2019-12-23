@@ -35,7 +35,7 @@ class CommentManagement extends React.Component {
                                 <th>Tên người dùng</th>
                                 <th>Tài khoản</th>
                                 <th>Nội dung</th>
-                                <th>Đánh giá</th>
+                                <th>Đánh giá</th>   
                             </tr>
                         </thead>
                         <tbody>
