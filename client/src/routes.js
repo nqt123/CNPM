@@ -5,6 +5,7 @@ import Baigiang from './components/Baigiang';
 import Hoclieu from './components/Hoclieu';
 import Kiemtra from './components/Kiemtra';
 import React from 'react';
+import Dashboard from './components/admin/Dashboard';
 const routes=[
 	{
 		path:"/",
@@ -34,7 +35,16 @@ const routes=[
 	{
 		path:"/dang-ki",
 		exact:false,
+<<<<<<< HEAD
 		main:({history})=><SignUp history={history}/>
+=======
+		main:()=><SignUp />
+	},
+	{
+		path: "/admin",
+		exact: false,
+		main:() => <Dashboard />
+>>>>>>> 83770896cdf52a58b5351c2438f90fd2c5dc6529
 	}
 ];
 export default routes;
