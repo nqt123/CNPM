@@ -224,6 +224,9 @@
     overflow: visible;
     height: auto;
   }
+  .dashboard {
+    width: 100%;
+  }
 }
 #changescroll::-webkit-scrollbar {
     width: 6px;
