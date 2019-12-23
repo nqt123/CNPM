@@ -69,6 +69,7 @@ class UserManagement extends React.Component {
                                 <th>Giới tính</th>
                                 <th>Địa chỉ</th>
                                 <th>Email</th>
+                                <th>Chức vụ</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -82,6 +83,7 @@ class UserManagement extends React.Component {
                                     <td>{l.gender === "male" ? "Nam" : "Nữ"}</td>
                                     <td>{l.location}</td>
                                     <td>{l.email}</td>
+                                    <td>{l.position === "User" ? "Người dùng" : "Quản trị"}</td>
                                     <td style={{ textAlign: 'center' }}>
                                         <Button size="sm" variant="danger" onClick={() => this.deleteUser(l._id)}>
                                             <i class="fa fa-window-close" aria-hidden="true"></i>

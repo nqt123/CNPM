@@ -25,13 +25,17 @@ class ExerciseManagement extends React.Component {
         });
     }
 
-    componentDidMount() {
+    loadExercises() {
         fetch('http://localhost:5000/exercises')
             .then(results => {
                 return results.json();
             }).then(data => {
                 this.setState({ lessons: data })
             })
+    }
+
+    componentDidMount() {
+        this.loadExercises();
     }
     render() {
         const { exercises } = this.state;
