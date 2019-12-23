@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 
 
 class CommentManagement extends React.Component {
@@ -36,6 +36,7 @@ class CommentManagement extends React.Component {
                                 <th>Tài khoản</th>
                                 <th>Nội dung</th>
                                 <th>Đánh giá</th>   
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,6 +47,11 @@ class CommentManagement extends React.Component {
                                     <td>thangdo0212</td>
                                     <td>{l.content}</td>
                                     <td>{l.rated} sao</td>
+                                    <td style={{ textAlign: 'center' }}>
+                                        <Button size="sm" variant="danger">
+                                            <i class="fa fa-window-close" aria-hidden="true"></i>
+                                        </Button>
+                                    </td>
                                 </tr>
                             )}
                         </tbody>

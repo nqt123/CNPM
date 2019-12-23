@@ -20,7 +20,20 @@ const MenuLink=({ label, to, activeOnlyWhenExact})=> {
 }
 class Menus extends Component{
   render(){
-    var {taikhoan}=this.props;
+    var {nguoidung}=this.props;
+    var result=[];
+    console.log(nguoidung);
+    if(!nguoidung)
+    {
+      result= <MenuLink label="Đăng nhập" to='/dang-nhap' activeOnlyWhenExact={false} />
+    }
+    else
+    {
+      result= <NavDropdown title={nguoidung.users.user.lastName} id="collasible-nav-dropdown">
+      <NavDropdown.Item>Thông tin</NavDropdown.Item>
+      <NavDropdown.Item onClick={this.handleLogout}>Thoát</NavDropdown.Item>
+    </NavDropdown>
+    }
   return (
     <React.Fragment>
         <Navbar collapseOnSelect expand="lg" variant="dark" fixed="top" className="changemenu">
@@ -32,7 +45,7 @@ class Menus extends Component{
               <MenuLink label="Bài giảng" to='/bai-giang' activeOnlyWhenExact={false} />
               <MenuLink label="Học liệu" to='/hoc-lieu' activeOnlyWhenExact={false} />
               <MenuLink label="Kiểm tra" to='/kiem-tra' activeOnlyWhenExact={false} />
-              <MenuLink label="Đăng nhập" to='/dang-nhap' activeOnlyWhenExact={false} />
+              {result}
             </Nav>
             <Form inline>
               <InputGroup>

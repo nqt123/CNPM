@@ -23,10 +23,6 @@ class LessonManagement extends React.Component {
         });
     }
 
-    searchLesson(keyword) {
-
-    }
-
     componentDidMount() {
         fetch('http://localhost:5000/lessons')
             .then(results => {
@@ -51,9 +47,6 @@ class LessonManagement extends React.Component {
                                 <Button size="sm"><i className="fa fa-search" aria-hidden="true"></i></Button>
                             </InputGroup.Append>
                         </InputGroup>
-                        <Button size="sm" style={{ marginLeft: '2%', width: 50 }} onClick={() => this.openModal()}>
-                            <i className="fa fa-plus" aria-hidden="true"></i>
-                        </Button>
                     </Form>
                 </div>
                 <div style={{ marginTop: 20 }}>
@@ -65,6 +58,7 @@ class LessonManagement extends React.Component {
                                 <th>Tên chương</th>
                                 <th>Số lượt đã xem</th>
                                 <th>Số lượt tải về</th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -75,12 +69,17 @@ class LessonManagement extends React.Component {
                                     <td>Chương 1</td>
                                     <td>{l.viewNumber}</td>
                                     <td>{l.downloaded}</td>
+                                    <td style={{ textAlign: 'center' }}>
+                                        <Button size="sm" onClick={() => this.openModal()}>
+                                            <i class="fa fa-wrench" aria-hidden="true"></i>
+                                        </Button>
+                                    </td>
                                 </tr>
                             )}
                         </tbody>
                     </Table>
                 </div>
-                <Modal visible={this.state.visible} width="50%" height="50%" effect="fadeInDown">
+                <Modal visible={this.state.visible} width="80%" height="80%" effect="fadeInDown">
                     <div>
                         <a href="javascript:void(0);" onClick={() => this.closeModal()}>Close</a>
                     </div>
