@@ -55,6 +55,7 @@ class LessonManagement extends React.Component {
                             <tr>
                                 <th>STT</th>
                                 <th>Tên bài giảng</th>
+                                <th>Tên chương</th>
                                 <th>Số lượt đã xem</th>
                                 <th>Số lượt tải về</th>
                                 <th></th>
@@ -65,6 +66,7 @@ class LessonManagement extends React.Component {
                                 <tr>
                                     <td>1</td>
                                     <td>{l.title}</td>
+                                    <td>{l.section.title}</td>
                                     <td>{l.viewNumber}</td>
                                     <td>{l.downloaded}</td>
                                     <td style={{ textAlign: 'center' }}>

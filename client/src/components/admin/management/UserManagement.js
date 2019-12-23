@@ -35,7 +35,7 @@ class UserManagement extends React.Component {
                 <div>
                     <Form inline style={{ marginLeft: '-0.5%' }}>
                         <InputGroup>
-                            <FormControl style={{ width: 300 }} type="text" placeholder="Họ và tên, tài khoản" className="ml-sm-2" size="sm" />
+                            <FormControl style={{ width: 300 }} type="text" placeholder="tài khoản, email" className="ml-sm-2" size="sm" />
                             <InputGroup.Append>
                                 <Button size="sm"><i className="fa fa-search" aria-hidden="true"></i></Button>
                             </InputGroup.Append>
