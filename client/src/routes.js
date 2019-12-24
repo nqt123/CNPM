@@ -7,6 +7,7 @@ import Kiemtra from './components/Kiemtra';
 import React from 'react';
 import Dashboard from './components/admin/Dashboard';
 import Thongtincanhan from './components/Thongtincanhan';
+import Giaitri from './components/Giaitri';
 const routes=[
 	{
 		path:"/",
@@ -16,17 +17,17 @@ const routes=[
 	{
 		path:"/bai-giang",
 		exact:false,
-		main:({location})=><Baigiang location={location}/>
+		main:({location,history})=><Baigiang location={location} history={history}/>
 	},
 	{
 		path:"/hoc-lieu",
 		exact:false,
-		main:({location})=><Hoclieu location={location}/>
+		main:({location,history})=><Hoclieu location={location} history={history}/>
 	},
 	{
 		path:"/kiem-tra",
 		exact:false,
-		main:({location})=><Kiemtra location={location}/>
+		main:({location,history})=><Kiemtra location={location} history={history}/>
 	},
 	{
 		path:"/dang-nhap",
@@ -46,7 +47,12 @@ const routes=[
 	{
 		path:"/thong-tin-ca-nhan",
 		exact:false,
-		main:()=><Thongtincanhan />
+		main:({history})=><Thongtincanhan history={history}/>
+	},
+	{
+		path:'/giai-tri',
+		exact:false,
+		main:()=><Giaitri />
 	}
 ];
 export default routes;

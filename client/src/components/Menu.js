@@ -4,14 +4,14 @@ import { BrowserRouter as Router, Route,Switch,Link } from "react-router-dom";
 import './../App.css';
 import logo from './../images/logo.png';
 import {Redirect} from 'react-router-dom';
-const MenuLink=({ label, to, activeOnlyWhenExact})=> {
+const MenuLink=({ label, to, activeOnlyWhenExact,disable})=> {
   return (
     <Route
       path={to}
       exact={activeOnlyWhenExact}
       children={({ match }) =>{
         return(
-        <Nav.Link className={match ? "active changetext" : "changetext"} href={to}>
+        <Nav.Link className={match ? "active changetext" : "changetext"} href={to} disabled={disable}>
           {label}
         </Nav.Link>
       )}}
@@ -34,18 +34,21 @@ class Menus extends Component{
         title="Người dùng"
       }
     }
-    var result=[];
+    var result=[],check=true;
     if(!nguoidung)
     {
-      result= <MenuLink label="Đăng nhập" to='/dang-nhap' activeOnlyWhenExact={false} />
+      check=true;
+      result= <MenuLink label="Đăng nhập" to='/dang-nhap' activeOnlyWhenExact={false} disable={false}/>
     }
     else
     {
+      check=false;
       result= <NavDropdown title={title} id="collasible-nav-dropdown" className="changetext">
       <NavDropdown.Item className="dropdown-item" href='/thong-tin-ca-nhan'>Thông tin</NavDropdown.Item>
       <NavDropdown.Item onClick={this.handleLogout} className="dropdown-item">Thoát</NavDropdown.Item>
     </NavDropdown>
     }
+    console.log(check)
   return (
     <React.Fragment>
         <Navbar collapseOnSelect expand="lg" variant="dark" fixed="top" className="changemenu">
@@ -53,11 +56,12 @@ class Menus extends Component{
           <Navbar.Toggle aria-controls="responsive-navbar-nav"/>
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto">
-              <MenuLink label="Trang chủ" to='/' activeOnlyWhenExact={true} />
-              <MenuLink label="Bài giảng" to='/bai-giang' activeOnlyWhenExact={false}/>
-              <MenuLink label="Học liệu" to='/hoc-lieu' activeOnlyWhenExact={false} />
-              <MenuLink label="Kiểm tra" to='/kiem-tra' activeOnlyWhenExact={false}/>
+              <MenuLink label="Trang chủ" to='/' activeOnlyWhenExact={true} disable={false}/>
+              <MenuLink label="Bài giảng" to='/bai-giang' activeOnlyWhenExact={false} disable={false}/>
+              <MenuLink label="Học liệu" to='/hoc-lieu' activeOnlyWhenExact={false} disable={false}/>
+              <MenuLink label="Kiểm tra" to='/kiem-tra' activeOnlyWhenExact={false} disable={check}/>
               {result}
+              <MenuLink label="Giải trí" to='/giai-tri' activeOnlyWhenExact={false} disable={false}/>
             </Nav>
             <Form inline>
               <InputGroup>
