@@ -3,36 +3,19 @@ const validator = require("validator");
 
 const exerciseSchema = new mongoose.Schema(
   {
-    createdBy: {
-      type: mongoose.Types.ObjectId,
-      ref: "User"
-    },
-    category: [],
-    type: String,
-    title: {
-      type: String,
-      minlength: 5
-    },
-    note: {
-      type: String
-    },
-    comment: [
+    content: String,
+    answers: [
       {
-        type: mongoose.Types.ObjectId,
-        ref: "Comment"
+        number: Number,
+        content: String
       }
     ],
+    correctAnswer: Number,
     lesson: {
       type: mongoose.Types.ObjectId,
       ref: "Lesson"
     },
-    questions: String,
-    viewNumber: Number,
-    source: String,
-    tags: [],
-    section: [],
-    downloaded: Number,
-    rated: Number
+    type : String
   },
   { timestamps: true }
 );
