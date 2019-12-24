@@ -35,7 +35,7 @@ router.post('/exercises', async (req, res) => {
 router.patch('/exercises/:id', async (req, res) => {
     const exercise = await Exercise.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
     if (!exercise) {
-        return res.status(404).send({ error: "User Not Found" })
+        return res.status(404).send({ error: "Exercise Not Found" })
     }
     return res.status(200).send(exercise)
 })
