@@ -14,8 +14,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        minlength: 8,
-        maxlength : 50
+        minlength: 8
     },
     email: {
         type: String,
@@ -55,8 +54,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
-    excercisePassed: [],
-    lastExcercise: mongoose.Types.ObjectId,
     avatar: String,
     comment: [],
     SSN: String,
@@ -72,7 +69,7 @@ userSchema.methods.generateAuthToken = async function () {
     const user = this
     const token = jwt.sign({ "_id": user._id.toString() }, "2TLC")
     user.tokens = user.tokens.concat({ token })
-    user.save()
+    await user.save()
     return token
 }
 userSchema.methods.toJSON = function(){
@@ -80,6 +77,7 @@ userSchema.methods.toJSON = function(){
     const userObj = user.toObject()
     delete userObj.password
     delete userObj.tokens
+    delete updatedAt
     return userObj
 }
 //Statics 
