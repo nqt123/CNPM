@@ -7,13 +7,15 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        unique: [true, "Bạn phải nhập tên đăng nhập"]
+        unique: [true, "Bạn phải nhập tên đăng nhập"],
+        maxlength : 100,
     },
     password: {
         type: String,
         required: true,
         trim: true,
-        minlength: 3,
+        minlength: 8,
+        maxlength : 50
     },
     email: {
         type: String,
@@ -28,12 +30,14 @@ const userSchema = new mongoose.Schema({
     firstName: {
         type: String,
         minlength: 1,
-        trim: true
+        trim: true,
+        maxlength : 50
     },
     lastName: {
         type: String,
         minlength: 1,
         trim: true,
+        maxlength : 50
     },
     gender: {
         type: String,
