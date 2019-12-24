@@ -6,7 +6,7 @@ class Baigiang extends Component{
   render(){
   return(
     <React.Fragment>
-    	<Menu1 />
+    	<Menu1/>
     	<TabBaigiang />
     	<Footer />
     </React.Fragment>

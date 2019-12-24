@@ -19,19 +19,30 @@ const MenuLink=({ label, to, activeOnlyWhenExact})=> {
   );
 }
 class Menus extends Component{
+  handleLogout=()=>{
+    this.props.logout();
+  }
   render(){
+    let title = "";
     var {nguoidung}=this.props;
+    if(nguoidung){
+      try{
+        title=nguoidung.users.user.lastName;
+      }catch(e)
+      {
+        title="Người dùng"
+      }
+    }
     var result=[];
-    console.log(nguoidung);
     if(!nguoidung)
     {
       result= <MenuLink label="Đăng nhập" to='/dang-nhap' activeOnlyWhenExact={false} />
     }
     else
     {
-      result= <NavDropdown title={nguoidung.users.user.lastName} id="collasible-nav-dropdown">
-      <NavDropdown.Item>Thông tin</NavDropdown.Item>
-      <NavDropdown.Item onClick={this.handleLogout}>Thoát</NavDropdown.Item>
+      result= <NavDropdown title={title} id="collasible-nav-dropdown" className="changetext">
+      <NavDropdown.Item className="dropdown-item">Thông tin</NavDropdown.Item>
+      <NavDropdown.Item onClick={this.handleLogout} className="dropdown-item">Thoát</NavDropdown.Item>
     </NavDropdown>
     }
   return (
@@ -42,9 +53,9 @@ class Menus extends Component{
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ml-auto">
               <MenuLink label="Trang chủ" to='/' activeOnlyWhenExact={true} />
-              <MenuLink label="Bài giảng" to='/bai-giang' activeOnlyWhenExact={false} />
+              <MenuLink label="Bài giảng" to='/bai-giang' activeOnlyWhenExact={false}/>
               <MenuLink label="Học liệu" to='/hoc-lieu' activeOnlyWhenExact={false} />
-              <MenuLink label="Kiểm tra" to='/kiem-tra' activeOnlyWhenExact={false} />
+              <MenuLink label="Kiểm tra" to='/kiem-tra' activeOnlyWhenExact={false}/>
               {result}
             </Nav>
             <Form inline>

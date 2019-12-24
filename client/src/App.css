@@ -33,15 +33,22 @@
 }
 .active1
 {
-  border: 1px solid #06A146;
-  border-radius: 3px;
+  border-bottom: 2px solid #06A146;
   color: white !important;
 }
 .menu
 {
   background: black;
 }
-.changetext,.changedropdown
+.changetext > a{
+  color: #fff !important;
+}
+.dropdown-item:hover
+{
+  background: green !important;
+  color: white;
+}
+.changetext
 {
   color: white !important;
   position: relative;
@@ -51,6 +58,11 @@
 .changetext:hover
 {
   color:#06A146 !important;
+}
+.disabled
+{
+  color: white !important;
+  opacity: 0.5;
 }
 .active
 {

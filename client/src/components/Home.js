@@ -12,11 +12,15 @@ class Home extends Component{
   {
     super(props);
     this.state={
-      display:true
+      display:true,
+      user:{}
     }
   }
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll, true);
+    this.setState({
+      user:this.props.location.state
+    });
   }  
   nav = React.createRef();
   
@@ -26,7 +30,7 @@ class Home extends Component{
     {
       this.setState({
         display:false
-      })
+      });
     }
     else
     {
@@ -35,9 +39,16 @@ class Home extends Component{
       })
     } 
   };
+
+  logout=()=>{
+    this.setState({
+      user: ""
+    });
+    this.render();
+  }
   render(){
   	var {classes,location}=this.props;
-    var result=this.state.display ? <Menu nguoidung={location.state}/>:<Menu1/>
+    var result=this.state.display  ? <Menu logout={this.logout} nguoidung={this.state.user}/>:<Menu1 logout={this.logout} nguoidung={this.state.user}/>
   return(
     <React.Fragment>
     	<div className={classes.paper}>

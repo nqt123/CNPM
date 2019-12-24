@@ -1,10 +1,79 @@
 import React,{Component} from 'react';
 import { Tab,Row,Col,Nav} from 'react-bootstrap';
 import './../App.css';
-import Tags from './Tags';
 import Comment from './Comment';
 class TabBaigiang extends Component{
+  constructor(props)
+  {
+    super(props);
+    this.state={
+      baigiangs:[]
+    }
+  }
+  componentDidMount()
+  {
+    fetch('http://localhost:5000/lessons',{
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }).then(res => res.json())
+      .then(respond => {
+        this.setState({
+          baigiangs:respond
+        })
+      })
+      .catch(err => console.log(err));
+  }
   render(){
+    const {baigiangs}=this.state;
+    var bgchuong1=baigiangs.filter((baigiang,index)=>{
+      return baigiang.section.order==1
+    });
+    var chuong1=bgchuong1.map((a,index)=>{
+      return (
+        <Nav.Item key={index}>
+              <Nav.Link eventKey={a._id} className="bai">{a.title}</Nav.Link>
+        </Nav.Item>
+      );
+    });
+    var bgchuong2=baigiangs.filter((baigiang,index)=>{
+      return baigiang.section.order==2
+    });
+    var chuong2=bgchuong2.map((a,index)=>{
+      return (
+        <Nav.Item key={index}>
+              <Nav.Link eventKey={a._id} className="bai">{a.title}</Nav.Link>
+        </Nav.Item>
+      );
+    });
+    var chuong2=bgchuong2.map((a,index)=>{
+      return (
+        <Nav.Item key={index}>
+              <Nav.Link eventKey={a._id} className="bai">{a.title}</Nav.Link>
+        </Nav.Item>
+      );
+    });
+    var videoc1=bgchuong1.map((a,index)=>{
+      return(
+        <Tab.Pane eventKey={a._id}>
+              <h3 className="tieudebaigiang text-center">{a.title}</h3>
+              <iframe className="video" 
+              src={a.video} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+              </iframe>
+        </Tab.Pane>
+        )
+    });
+    var videoc2=bgchuong2.map((a,index)=>{
+      return(
+        <Tab.Pane eventKey={a._id}>
+              <h3 className="tieudebaigiang text-center">{a.title}</h3>
+              <iframe className="video" 
+              src={a.video} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+              </iframe>
+        </Tab.Pane>
+        )
+    });
   return(
     <div className="tabbaigiang">
       <Tab.Container id="left-tabs-example" defaultActiveKey="first">
@@ -12,28 +81,9 @@ class TabBaigiang extends Component{
         <Col sm={4} xs={12} className="traitabbaigiang" id="changescroll">
           <Nav variant="pills" className="flex-column">
             <span className="chuong">Chương I: Thành phần hóa học của tế bào</span>
-            <Nav.Item>
-              <Nav.Link eventKey="1" className="bai">Bài 1: Các nguyên tố hóa học và nước</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="2" className="bai">Bài 2: Cacbohiđrat và lipit</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="3" className="bai">Bài 3: Prôtein</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="4" className="bai">Bài 4: Axit nuclêic</Nav.Link>
-            </Nav.Item>
+            {chuong1}
             <span className="chuong">Chương II: Cấu trúc của tế bào</span>
-            <Nav.Item>
-              <Nav.Link eventKey="5" className="bai">Bài 5: Tế bào nhân sơ</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="6" className="bai">Bài 6: Tế bào nhân thực</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="7" className="bai">Bài 7: Vận chuyển các chất qua màng sinh chất</Nav.Link>
-            </Nav.Item>
+            {chuong2}
             <span className="chuong">Chương III: Chuyển hóa vật chất và năng lượng trong tế bào</span>
             <Nav.Item>
               <Nav.Link eventKey="8" className="bai">Bài 8: Khái quát về năng lượng và chuyển hóa vật chất</Nav.Link>
@@ -88,21 +138,8 @@ class TabBaigiang extends Component{
         </Col>
         <Col sm={8} xs={12} className="phaitabbaigiang">
           <Tab.Content >
-            <Tab.Pane eventKey="1">
-              <h3 className="tieudebaigiang text-center">Bài 1: Các nguyên tố hóa học và nước</h3>
-              <iframe className="video"
-              width="675" height="400" 
-              src="https://www.youtube.com/embed/0VC6euBtKkk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-              </iframe>
-              <Tags />
-            </Tab.Pane>
-            <Tab.Pane eventKey="2">
-               <h3 className="tieudebaigiang text-center">Bài 2: Cacbohiđrat Và lipit</h3>
-               <iframe className="video" 
-               width="675" height="400" src="https://www.youtube.com/embed/aGUQsb31TEw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-               </iframe>
-               <Tags />
-            </Tab.Pane>
+            {videoc1}
+            {videoc2}
           </Tab.Content>
         </Col>
       </Row>

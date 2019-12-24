@@ -56,7 +56,7 @@ class SignUp extends Component {
           return Swal.fire({
             icon: 'error',
             title: 'Tài khoản đã tồn tại',
-            text: 'Vui lòng điền đầy đủ thông tin!',
+            text: 'Vui lòng điền lại tài khoản!',
           });
         }
         this.props.history.push('/dang-nhap')
@@ -82,18 +82,16 @@ class SignUp extends Component {
           <Typography component="h1" variant="h4" className={classes.dangki}>
             Đăng kí
         </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} autocomplete="off">
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
-                  autoComplete="fname"
                   name="firstName"
                   variant="outlined"
                   size="small"
                   fullWidth
                   id="firstName"
                   label="Họ"
-                  autoFocus
                   classes={{ root: classes.root }}
                   value={firstName}
                   onChange={this.onChange}
@@ -106,7 +104,6 @@ class SignUp extends Component {
                   id="lastName"
                   label="Tên"
                   name="lastName"
-                  autoComplete="lname"
                   classes={{ root: classes.root }}
                   value={lastName}
                   onChange={this.onChange}
@@ -120,7 +117,6 @@ class SignUp extends Component {
                   label="Tài khoản"
                   name="username"
                   type="text"
-                  autoComplete="text"
                   classes={{ root: classes.root }}
                   value={username}
                   onChange={this.onChange}
@@ -134,7 +130,6 @@ class SignUp extends Component {
                   label="Mật khẩu"
                   type="password"
                   id="password"
-                  autoComplete="current-password"
                   classes={{ root: classes.root }}
                   value={password}
                   onChange={this.onChange}
@@ -148,7 +143,6 @@ class SignUp extends Component {
                   label="Email"
                   name="email"
                   type="email"
-                  autoComplete="email"
                   classes={{ root: classes.root }}
                   value={email}
                   onChange={this.onChange}
@@ -162,7 +156,6 @@ class SignUp extends Component {
                   label="Địa chỉ"
                   name="diachi"
                   type="text"
-                  autoComplete="text"
                   classes={{ root: classes.root }}
                   value={diachi}
                   onChange={this.onChange}
@@ -176,7 +169,6 @@ class SignUp extends Component {
                   label="CMND"
                   name="SSN"
                   type="text"
-                  autoComplete="text"
                   classes={{ root: classes.root }}
                   value={SSN}
                   onChange={this.onChange}
@@ -190,7 +182,6 @@ class SignUp extends Component {
                   label="Số điện thoại"
                   name="sdt"
                   type="text"
-                  autoComplete="text"
                   classes={{ root: classes.root }}
                   value={sdt}
                   onChange={this.onChange}

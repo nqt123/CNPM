@@ -10,7 +10,7 @@ const routes=[
 	{
 		path:"/",
 		exact:true,
-		main:({location})=><Home location={location}/>
+		main:({location,history})=><Home location={location} history={history}/>
 	},
 	{
 		path:"/bai-giang",
@@ -20,12 +20,12 @@ const routes=[
 	{
 		path:"/hoc-lieu",
 		exact:false,
-		main:()=><Hoclieu />
+		main:({location})=><Hoclieu location={location}/>
 	},
 	{
 		path:"/kiem-tra",
 		exact:false,
-		main:()=><Kiemtra />
+		main:({location})=><Kiemtra location={location}/>
 	},
 	{
 		path:"/dang-nhap",

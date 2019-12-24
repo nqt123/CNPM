@@ -56,6 +56,9 @@ class SignIn extends Component{
               text: 'Vui lòng kiểm tra lại tài khoản hoặc mật khẩu!',
             });
           }
+          this.props.history.push({pathname:'/bai-giang',state:{users:respond}});
+          this.props.history.push({pathname:'/hoc-lieu',state:{users:respond}});
+          this.props.history.push({pathname:'/kiem-tra',state:{users:respond}})
           this.props.history.push({pathname:'/',state:{users:respond}})
         })
       .catch(err => console.log(err));
@@ -81,7 +84,7 @@ class SignIn extends Component{
         <Typography component="h1" variant="h4" className={classes.colorWhite}>
           Đăng nhập
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} autocomplete="off">
           <TextField
             variant="outlined"
             margin="normal"
@@ -89,8 +92,6 @@ class SignIn extends Component{
             id="username"
             label="Tài khoản"
             name="username"
-            autoComplete="text"
-            autoFocus
             classes={{root:classes.root}}
             value={username}
             onChange={this.onChange}
@@ -103,7 +104,6 @@ class SignIn extends Component{
             label="Mật khẩu"
             type='password'
             id="password"
-            autoComplete="current-password"
             classes={{root:classes.root}}
             value={password}
             onChange={this.onChange}
