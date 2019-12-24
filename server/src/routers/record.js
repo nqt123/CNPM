@@ -35,7 +35,7 @@ router.post('/records', async (req, res) => {
 router.patch('/records/:id', async (req, res) => {
     const record = await Record.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
     if (!record) {
-        return res.status(404).send({ error: "User Not Found" })
+        return res.status(404).send({ error: "Record Not Found" })
     }
     return res.status(200).send(record)
 })

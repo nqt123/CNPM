@@ -7,13 +7,14 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        unique: [true, "Bạn phải nhập tên đăng nhập"]
+        unique: [true, "Bạn phải nhập tên đăng nhập"],
+        maxlength : 100,
     },
     password: {
         type: String,
         required: true,
         trim: true,
-        minlength: 3,
+        minlength: 8
     },
     email: {
         type: String,
@@ -28,12 +29,14 @@ const userSchema = new mongoose.Schema({
     firstName: {
         type: String,
         minlength: 1,
-        trim: true
+        trim: true,
+        maxlength : 50
     },
     lastName: {
         type: String,
         minlength: 1,
         trim: true,
+        maxlength : 50
     },
     gender: {
         type: String,
@@ -51,8 +54,6 @@ const userSchema = new mongoose.Schema({
         type: String,
         trim: true
     },
-    excercisePassed: [],
-    lastExcercise: mongoose.Types.ObjectId,
     avatar: String,
     comment: [],
     SSN: String,
@@ -68,7 +69,7 @@ userSchema.methods.generateAuthToken = async function () {
     const user = this
     const token = jwt.sign({ "_id": user._id.toString() }, "2TLC")
     user.tokens = user.tokens.concat({ token })
-    user.save()
+    await user.save()
     return token
 }
 userSchema.methods.toJSON = function(){
@@ -76,6 +77,7 @@ userSchema.methods.toJSON = function(){
     const userObj = user.toObject()
     delete userObj.password
     delete userObj.tokens
+    delete updatedAt
     return userObj
 }
 //Statics 
