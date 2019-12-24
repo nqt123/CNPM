@@ -1,6 +1,6 @@
 import React from 'react';
-import { Table, FormControl, Form, Button, InputGroup } from 'react-bootstrap';
 import Modal from 'react-awesome-modal';
+import { Button, Table } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 
 
@@ -112,6 +112,7 @@ class LessonManagement extends React.Component {
                             <tr>
                                 <th>Bài</th>
                                 <th>Tên bài giảng</th>
+                                <th>Chương</th>
                                 <th>Tên chương</th>
                                 <th>Đường dẫn video</th>
                                 <th>Số lượt đã xem</th>
@@ -120,10 +121,11 @@ class LessonManagement extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {lessons.map(l =>
+                            {lessons.map((l, i) =>
                                 <tr>
-                                    <td>{l.order}</td>
+                                    <td>{++i}</td>
                                     <td>{l.title}</td>
+                                    <td>{l.section.order}</td>
                                     <td>{l.section.title}</td>
                                     <td>{l.video}</td>
                                     <td>{l.viewNumber}</td>

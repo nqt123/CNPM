@@ -1,5 +1,6 @@
 import React from 'react';
-import { Table, FormControl, Form, Button, InputGroup } from 'react-bootstrap';
+import { Button, Table } from 'react-bootstrap';
+import Swal from 'sweetalert2';
 
 class UserManagement extends React.Component {
 
@@ -11,15 +12,31 @@ class UserManagement extends React.Component {
     }
 
     deleteUser(userId) {
-        fetch('http://localhost:5000/users/' + userId, {
-            method: 'DELETE'
-        }
-        ).then(
-            data => {
-                alert("Xóa thành công");
-                this.loadUsers();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+                fetch('http://localhost:5000/users/' + userId, {
+                    method: 'DELETE'
+                }
+                ).then(
+                    data => {
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                        this.loadUsers();
+                    }
+                )
             }
-        )
+        })
     }
 
     loadUsers() {
@@ -27,7 +44,7 @@ class UserManagement extends React.Component {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZGVkMWYzZGVmYTU5ZDMwYTgwMTQ3MDYiLCJpYXQiOjE1NzcxMjQxMzN9.yn33C7Lao0KCIkyo8Gi17sHXvEyGvsPR-ttSbKXNmIQ'
+                'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTAyMmQxZTIyM2RkNTM2YjQ4NWQ1NDkiLCJpYXQiOjE1NzcyMDA5Mjd9.R1m3pwVo72IdroENNdAgc0oSoUsjCHronk3pkbSmdvU'
             }
         })
             .then(results => {
@@ -35,6 +52,7 @@ class UserManagement extends React.Component {
             }).then(data => {
                 if (data != null) {
                     this.setState({ users: data })
+                    console.log(this.state.users);
                 }
             })
     }
@@ -49,16 +67,6 @@ class UserManagement extends React.Component {
             <div>
                 <div style={{ width: '100%', borderTop: 0, borderLeft: 0, borderRight: 0, borderBottom: 2, borderStyle: 'solid', marginBottom: 20 }}>
                     <h2>Quản lý người dùng</h2>
-                </div>
-                <div>
-                    <Form inline style={{ marginLeft: '-0.5%' }}>
-                        <InputGroup>
-                            <FormControl style={{ width: 300 }} type="text" placeholder="Tên đăng nhập, email" className="ml-sm-2" size="sm" />
-                            <InputGroup.Append>
-                                <Button size="sm"><i className="fa fa-search" aria-hidden="true"></i></Button>
-                            </InputGroup.Append>
-                        </InputGroup>
-                    </Form>
                 </div>
                 <div style={{ marginTop: 20 }}>
                     <Table striped bordered hover>

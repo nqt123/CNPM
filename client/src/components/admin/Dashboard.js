@@ -4,10 +4,10 @@ import React, { Component } from "react";
 import { Route } from 'react-router';
 import { BrowserRouter as Router } from 'react-router-dom';
 import CommentManagement from "./management/CommentManagement";
+import ExamManagemnt from "./management/ExamManagement";
 import ExerciseManagement from "./management/ExerciseManagement";
 import LessonManagement from "./management/LessonManagement";
 import UserManagement from "./management/UserManagement";
-import ExamManagemnt from "./management/ExamManagement";
 
 class Dashboard extends Component {
     state = {
@@ -85,7 +85,7 @@ class Dashboard extends Component {
                         <div style={{
                             marginLeft: expanded ? 260 : 84,
                             marginTop: 50,
-                            paddingRight: 30
+                            paddingRight: 30,
                         }}>
                             <main>
                                 <Route path="/admin" exact component={props => <LessonManagement />} />

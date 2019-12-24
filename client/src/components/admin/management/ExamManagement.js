@@ -1,7 +1,7 @@
 import React from 'react';
-import LoaiDethi from '../../LoaiDethi';
 import Modal from 'react-awesome-modal';
-import { Table, FormControl, Form, Button, InputGroup } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
+import LoaiDethi from '../../LoaiDethi';
 
 
 class ExamManagement extends React.Component {
