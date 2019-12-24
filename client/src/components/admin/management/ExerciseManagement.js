@@ -2,7 +2,6 @@ import React from 'react';
 import { Table, Button } from 'react-bootstrap';
 import Modal from 'react-awesome-modal';
 import Swal from 'sweetalert2';
-import { da } from 'date-fns/locale';
 
 class ExerciseManagement extends React.Component {
 

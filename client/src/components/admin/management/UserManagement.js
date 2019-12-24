@@ -33,7 +33,9 @@ class UserManagement extends React.Component {
             .then(results => {
                 return results.json();
             }).then(data => {
-                this.setState({ users: data })
+                if (data != null) {
+                    this.setState({ users: data })
+                }
             })
     }
 
