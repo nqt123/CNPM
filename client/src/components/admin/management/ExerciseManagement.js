@@ -58,7 +58,7 @@ class ExerciseManagement extends React.Component {
                 lessonId: exercise.lesson._id
             })
         });
-
+        this.loadLesson();
     }
 
     closeModal() {
