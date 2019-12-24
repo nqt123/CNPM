@@ -1,14 +1,13 @@
-import React, { Component } from "react";
-import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+import SideNav, { NavIcon, NavItem, NavText } from '@trendmicro/react-sidenav';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
+import React, { Component } from "react";
 import { Route } from 'react-router';
 import { BrowserRouter as Router } from 'react-router-dom';
-import LessonManagement from "./management/LessonManagement";
-import ExerciseManagement from "./management/ExerciseManagement";
-import UserManagement from "./management/UserManagement";
-import ExamManagement from "./management/ExamManagement";
 import CommentManagement from "./management/CommentManagement";
-import SignIn from "../SignIn";
+import ExerciseManagement from "./management/ExerciseManagement";
+import LessonManagement from "./management/LessonManagement";
+import UserManagement from "./management/UserManagement";
+import ExamManagemnt from "./management/ExamManagement";
 
 class Dashboard extends Component {
     state = {
@@ -56,17 +55,17 @@ class Dashboard extends Component {
                                             Quản lý bài kiểm tra
                                     </NavText>
                                     </NavItem>
+                                    <NavItem eventKey="users">
+                                        <NavIcon>
+                                            <i className="fa fa-fw fa-user" style={{ fontSize: '1.75em' }} />
+                                        </NavIcon>
+                                        <NavText>
+                                            Quản lý người dùng
+                                    </NavText>
+                                    </NavItem>
                                     <NavItem eventKey="exam">
                                         <NavIcon>
                                             <i className="fa fa-fw fa-folder" style={{ fontSize: '1.75em' }} />
-                                        </NavIcon>
-                                        <NavText>
-                                            Quản lý đề thi
-                                    </NavText>
-                                    </NavItem>
-                                    <NavItem eventKey="user">
-                                        <NavIcon>
-                                            <i className="fa fa-fw fa-user" style={{ fontSize: '1.75em' }} />
                                         </NavIcon>
                                         <NavText>
                                             Quản lý người dùng
@@ -92,8 +91,8 @@ class Dashboard extends Component {
                                 <Route path="/admin" exact component={props => <LessonManagement />} />
                                 <Route path="/admin/lesson" exact component={props => <LessonManagement />} />
                                 <Route path="/admin/exercise" component={props => <ExerciseManagement />} />
-                                <Route path="/admin/exam" component={props => <ExamManagement />} />
-                                <Route path="/admin/user" component={props => <UserManagement />} />
+                                <Route path="/admin/exam" component={props => <ExamManagemnt />} />
+                                <Route path="/admin/users" component={props => <UserManagement />} />
                                 <Route path="/admin/comment" component={props => <CommentManagement />} />
                             </main>
                         </div>

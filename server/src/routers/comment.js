@@ -36,7 +36,7 @@ router.patch('/comments/:id', async (req, res) => {
     // const comment = await Comment.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
     const comment = await Comment.findById(req.params.id)
     if (!comment) {
-        return res.status(404).send({ error: "User Not Found" })
+        return res.status(404).send({ error: "Comment Not Found" })
     }
     const updates = Object.keys(req.body)
 

@@ -18,9 +18,11 @@ class Home extends Component{
   }
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll, true);
-    this.setState({
-      user:this.props.location.state
-    });
+      if (typeof(Storage) !== "undefined") {
+      this.setState({
+            user:JSON.parse(localStorage.getItem('taikhoan'))
+          });
+      } 
   }  
   nav = React.createRef();
   
@@ -41,13 +43,14 @@ class Home extends Component{
   };
 
   logout=()=>{
+    localStorage.removeItem('taikhoan');
     this.setState({
       user: ""
     });
     this.render();
   }
   render(){
-  	var {classes,location}=this.props;
+  	var {classes}=this.props;
     var result=this.state.display  ? <Menu logout={this.logout} nguoidung={this.state.user}/>:<Menu1 logout={this.logout} nguoidung={this.state.user}/>
   return(
     <React.Fragment>

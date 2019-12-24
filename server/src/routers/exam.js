@@ -35,7 +35,7 @@ router.post('/exams', async (req, res) => {
 router.patch('/exams/:id', async (req, res) => {
     const exam = await Exam.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true })
     if (!exam) {
-        return res.status(404).send({ error: "User Not Found" })
+        return res.status(404).send({ error: "Exam Not Found" })
     }
     return res.status(200).send(exam)
 })

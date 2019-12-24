@@ -6,6 +6,7 @@ import Hoclieu from './components/Hoclieu';
 import Kiemtra from './components/Kiemtra';
 import React from 'react';
 import Dashboard from './components/admin/Dashboard';
+import Thongtincanhan from './components/Thongtincanhan';
 const routes=[
 	{
 		path:"/",
@@ -41,6 +42,11 @@ const routes=[
 		path: "/admin",
 		exact: false,
 		main:() => <Dashboard />
+	},
+	{
+		path:"/thong-tin-ca-nhan",
+		exact:false,
+		main:()=><Thongtincanhan />
 	}
 ];
 export default routes;

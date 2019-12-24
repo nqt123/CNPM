@@ -34,7 +34,7 @@ class SignUp extends Component {
   handleSignup = (e) => {
     e.preventDefault();
     const { username, password, firstName, lastName, email, diachi, sdt, gender, ngaysinh, SSN } = this.state;
-    if (!username || !password || !firstName || !lastName || !email || !diachi || !sdt || !ngaysinh) {
+    if (!username || !password || !firstName || !lastName || !email) {
       return Swal.fire({
         icon: 'error',
         title: 'Thiếu thông tin',
@@ -74,7 +74,6 @@ class SignUp extends Component {
   render() {
     const { classes } = this.props;
     var { username, password, firstName, lastName, email, diachi, sdt, gender, ngaysinh, SSN } = this.state;
-    console.log(username + password + firstName + lastName + email + diachi + sdt + gender + ngaysinh);
     return (
       <Container component="main" maxWidth="sm" className={classes.changedangki}>
         <CssBaseline />

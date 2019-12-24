@@ -56,10 +56,12 @@ class SignIn extends Component{
               text: 'Vui lòng kiểm tra lại tài khoản hoặc mật khẩu!',
             });
           }
-          this.props.history.push({pathname:'/bai-giang',state:{users:respond}});
-          this.props.history.push({pathname:'/hoc-lieu',state:{users:respond}});
-          this.props.history.push({pathname:'/kiem-tra',state:{users:respond}})
-          this.props.history.push({pathname:'/',state:{users:respond}})
+          if(respond.user.position === "User") {
+            localStorage.setItem('taikhoan',JSON.stringify(respond));
+            this.props.history.push("/");
+          } else {
+            this.props.history.push("/admin")
+          }
         })
       .catch(err => console.log(err));
   }
@@ -111,7 +113,7 @@ class SignIn extends Component{
           />
           <FormControlLabel
             control={<Checkbox color="default" value="remember" className={classes.colorGreen}/>}
-            label="Remember me"
+            label="Nhớ tài khoản"
             className={classes.colorWhite}
           />
           <Button

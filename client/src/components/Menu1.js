@@ -25,7 +25,7 @@ class Menus extends Component{
     var {nguoidung}=this.props;
     if(nguoidung){
       try{
-        title=nguoidung.users.user.lastName;
+        title=nguoidung.user.username;
       }catch(e)
       {
         title="Người dùng"
@@ -39,7 +39,7 @@ class Menus extends Component{
     else
     {
       result= <NavDropdown title={title} id="collasible-nav-dropdown">
-      <NavDropdown.Item className="dropdown-item">Thông tin</NavDropdown.Item>
+      <NavDropdown.Item className="dropdown-item" href='/thong-tin-ca-nhan'>Thông tin</NavDropdown.Item>
       <NavDropdown.Item onClick={this.handleLogout} className="dropdown-item">Thoát</NavDropdown.Item>
     </NavDropdown>
     }
