@@ -17,7 +17,7 @@ class LessonManagement extends React.Component {
     }
 
     openModal(lessonId) {
-        fetch('http://localhost:5000/lessons/' + lessonId)
+        fetch('https://nqt-api-cnpm.herokuapp.com/lessons/' + lessonId)
             .then(results => {
                 return results.json();
             }).then(data => {
@@ -44,7 +44,7 @@ class LessonManagement extends React.Component {
                 text: 'Vui lòng điền đầy đủ thông tin!',
             });
         }
-        fetch('http://localhost:5000/exercises/' + lessonId, {
+        fetch('https://nqt-api-cnpm.herokuapp.com/exercises/' + lessonId, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ class LessonManagement extends React.Component {
     }
 
     loadLesson() {
-        fetch('http://localhost:5000/lessons')
+        fetch('https://nqt-api-cnpm.herokuapp.com/lessons')
             .then(results => {
                 return results.json();
             }).then(data => {

@@ -22,7 +22,7 @@ class UserManagement extends React.Component {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.value) {
-                fetch('http://localhost:5000/users/' + userId, {
+                fetch('https://nqt-api-cnpm.herokuapp.com/users/' + userId, {
                     method: 'DELETE'
                 }
                 ).then(
@@ -40,7 +40,7 @@ class UserManagement extends React.Component {
     }
 
     loadUsers() {
-        fetch('http://localhost:5000/users', {
+        fetch('https://nqt-api-cnpm.herokuapp.com/users', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

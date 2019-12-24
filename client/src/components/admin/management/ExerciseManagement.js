@@ -68,7 +68,7 @@ class ExerciseManagement extends React.Component {
     }
 
     loadLesson() {
-        fetch('http://localhost:5000/lessons')
+        fetch('https://nqt-api-cnpm.herokuapp.com/lessons')
             .then(results => {
                 return results.json();
             }).then(data => {
@@ -77,7 +77,7 @@ class ExerciseManagement extends React.Component {
     }
 
     loadExercises() {
-        fetch('http://localhost:5000/exercises')
+        fetch('https://nqt-api-cnpm.herokuapp.com/exercises')
             .then(results => {
                 return results.json();
             }).then(data => {
@@ -86,7 +86,7 @@ class ExerciseManagement extends React.Component {
     }
 
     getExercise(exerciseId, callback) {
-        fetch('http://localhost:5000/exercises/' + exerciseId)
+        fetch('https://nqt-api-cnpm.herokuapp.com/exercises/' + exerciseId)
             .then(results => {
                 return results.json();
             }).then(data => {
@@ -115,7 +115,7 @@ class ExerciseManagement extends React.Component {
             });
         }
 
-        fetch('http://localhost:5000/exercises', {
+        fetch('https://nqt-api-cnpm.herokuapp.com/exercises', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -168,7 +168,7 @@ class ExerciseManagement extends React.Component {
             });
         }
 
-        fetch('http://localhost:5000/exercises/' + exerciseId, {
+        fetch('https://nqt-api-cnpm.herokuapp.com/exercises/' + exerciseId, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',

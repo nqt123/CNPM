@@ -24,7 +24,7 @@ class CommentManagement extends React.Component {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.value) {
-                fetch('http://localhost:5000/comments/' + commentId, {
+                fetch('https://nqt-api-cnpm.herokuapp.com/comments/' + commentId, {
                     method: 'DELETE'
                 }
                 ).then(
@@ -42,7 +42,7 @@ class CommentManagement extends React.Component {
     }
 
     loadComments() {
-        fetch('http://localhost:5000/comments', {
+        fetch('https://nqt-api-cnpm.herokuapp.com/comments', {
             headers: {
                 'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTAyMmQxZTIyM2RkNTM2YjQ4NWQ1NDkiLCJpYXQiOjE1NzcyMDA5Mjd9.R1m3pwVo72IdroENNdAgc0oSoUsjCHronk3pkbSmdvU'
             }
