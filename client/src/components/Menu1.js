@@ -17,7 +17,32 @@ const MenuLink=({ label, to, activeOnlyWhenExact})=> {
   );
 }
 class Menus extends Component{
+  handleLogout=()=>{
+    this.props.logout();
+  }
   render(){
+    let title = "";
+    var {nguoidung}=this.props;
+    if(nguoidung){
+      try{
+        title=nguoidung.user.username;
+      }catch(e)
+      {
+        title="Người dùng"
+      }
+    }
+    var result=[];
+    if(!nguoidung)
+    {
+      result= <MenuLink label="Đăng nhập" to='/dang-nhap' activeOnlyWhenExact={false} />
+    }
+    else
+    {
+      result= <NavDropdown title={title} id="collasible-nav-dropdown">
+      <NavDropdown.Item className="dropdown-item" href='/thong-tin-ca-nhan'>Thông tin</NavDropdown.Item>
+      <NavDropdown.Item onClick={this.handleLogout} className="dropdown-item">Thoát</NavDropdown.Item>
+    </NavDropdown>
+    }
   return (
     <React.Fragment>
         <Navbar collapseOnSelect expand="lg" variant="dark" fixed="top" className="menu">
@@ -29,7 +54,7 @@ class Menus extends Component{
               <MenuLink label="Bài giảng" to='/bai-giang' activeOnlyWhenExact={false} />
               <MenuLink label="Học liệu" to='/hoc-lieu' activeOnlyWhenExact={false} />
               <MenuLink label="Kiểm tra" to='/kiem-tra' activeOnlyWhenExact={false} />
-              <MenuLink label="Đăng nhập" to='/dang-nhap' activeOnlyWhenExact={false} />
+              {result}
             </Nav>
             <Form inline>
               <InputGroup>

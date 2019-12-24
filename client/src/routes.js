@@ -6,11 +6,12 @@ import Hoclieu from './components/Hoclieu';
 import Kiemtra from './components/Kiemtra';
 import React from 'react';
 import Dashboard from './components/admin/Dashboard';
+import Thongtincanhan from './components/Thongtincanhan';
 const routes=[
 	{
 		path:"/",
 		exact:true,
-		main:({location})=><Home location={location}/>
+		main:({location,history})=><Home location={location} history={history}/>
 	},
 	{
 		path:"/bai-giang",
@@ -20,12 +21,12 @@ const routes=[
 	{
 		path:"/hoc-lieu",
 		exact:false,
-		main:()=><Hoclieu />
+		main:({location})=><Hoclieu location={location}/>
 	},
 	{
 		path:"/kiem-tra",
 		exact:false,
-		main:()=><Kiemtra />
+		main:({location})=><Kiemtra location={location}/>
 	},
 	{
 		path:"/dang-nhap",
@@ -41,6 +42,11 @@ const routes=[
 		path: "/admin",
 		exact: false,
 		main:() => <Dashboard />
+	},
+	{
+		path:"/thong-tin-ca-nhan",
+		exact:false,
+		main:()=><Thongtincanhan />
 	}
 ];
 export default routes;

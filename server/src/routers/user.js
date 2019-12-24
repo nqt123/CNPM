@@ -20,7 +20,7 @@ router.get("/users", auth, async (req, res) => {
 });
 router.get("/users/me", auth, async (req, res) => {
   try {
-    res.send(req.user);
+    res.status(200).send(req.user);
   } catch (error) {
     res.status(404).send(error);
   }
@@ -32,7 +32,7 @@ router.post("/users/login", async (req, res) => {
       req.body.password
     );
     const token = await user.generateAuthToken();
-    res.send({ user, token });
+    res.status(200).send({ user, token });
   } catch (error) {
     res.status(400).send(error);
   }
@@ -42,7 +42,7 @@ router.post("/users/signup", async (req, res) => {
   try {
     await user.save();
     const token = await user.generateAuthToken();
-    res.send({ user, token });
+    res.status(201).send({ user, token });
   } catch (error) {
     return res.send({ error });
   }
@@ -53,7 +53,7 @@ router.get("/users/:id", async (req, res) => {
     if (!user) {
       return res.status(404).send({ error: "User not found" });
     }
-    res.status(201).send(user);
+    res.status(200).send(user);
   } catch (error) {
     res.status(404).send(error);
   }
@@ -62,7 +62,7 @@ router.post("/users/logout", auth, async (req, res) => {
   try {
     req.user.tokens = req.user.tokens.filter(token => token.token != req.token);
     await req.user.save();
-    res.send(req.user);
+    res.status(200).send(req.user);
   } catch (error) {
     res.status(500).send();
   }
@@ -88,7 +88,7 @@ router.patch("/users/:id", async (req, res) => {
 
     await user.save();
 
-    res.send(user);
+    res.status(200).send(user);
   } catch (error) {
     res.status(400).send(error);
   }

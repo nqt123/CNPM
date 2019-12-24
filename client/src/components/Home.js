@@ -12,11 +12,17 @@ class Home extends Component{
   {
     super(props);
     this.state={
-      display:true
+      display:true,
+      user:{}
     }
   }
   componentDidMount() {
     window.addEventListener('scroll', this.handleScroll, true);
+      if (typeof(Storage) !== "undefined") {
+      this.setState({
+            user:JSON.parse(localStorage.getItem('taikhoan'))
+          });
+      } 
   }  
   nav = React.createRef();
   
@@ -26,7 +32,7 @@ class Home extends Component{
     {
       this.setState({
         display:false
-      })
+      });
     }
     else
     {
@@ -35,9 +41,17 @@ class Home extends Component{
       })
     } 
   };
+
+  logout=()=>{
+    localStorage.removeItem('taikhoan');
+    this.setState({
+      user: ""
+    });
+    this.render();
+  }
   render(){
-  	var {classes,location}=this.props;
-    var result=this.state.display ? <Menu nguoidung={location.state}/>:<Menu1/>
+  	var {classes}=this.props;
+    var result=this.state.display  ? <Menu logout={this.logout} nguoidung={this.state.user}/>:<Menu1 logout={this.logout} nguoidung={this.state.user}/>
   return(
     <React.Fragment>
     	<div className={classes.paper}>
