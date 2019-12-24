@@ -83,8 +83,8 @@ class CommentManagement extends React.Component {
                                 {comments.map((c, i) =>
                                     <tr>
                                         <td>{++i}</td>
-                                        <td>{c.userId.lastName} {c.userId.firstName}</td>
-                                        <td>{c.userId.username}</td>
+                                        <td>Đỗ Tiến Thắng</td>
+                                        <td>thangdo0212</td>
                                         <td>{c.content}</td>
                                         <td>{c.rated} sao</td>
                                         <td style={{ textAlign: 'center' }}>
