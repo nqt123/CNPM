@@ -7,7 +7,8 @@ class LessonManagement extends React.Component {
         super(props);
         this.state = {
             lessons: [],
-            visible: false
+            visible: false,
+            linkVideo: ''
         }
     }
 
@@ -31,6 +32,10 @@ class LessonManagement extends React.Component {
                 this.setState({ lessons: data })
             })
     }
+
+    handleChange = event => {
+        this.setState({ linkVideo: event.target.value });
+    };
 
     componentDidMount() {
         this.loadLesson();
@@ -62,7 +67,7 @@ class LessonManagement extends React.Component {
                                 <th>Tên chương</th>
                                 <th>Số lượt đã xem</th>
                                 <th>Số lượt tải về</th>
-                                {/* <th></th> */}
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -83,9 +88,25 @@ class LessonManagement extends React.Component {
                         </tbody>
                     </Table>
                 </div>
-                <Modal visible={this.state.visible} width="80%" height="80%" effect="fadeInDown">
-                    <div>
-                        <a href="javascript:void(0);" onClick={() => this.closeModal()}>Close</a>
+                <Modal visible={this.state.visible} width="80%" height="50%" effect="fadeInDown">
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                        <form style={{ width: '80%' }}>
+                            <div className="row">
+                                <div className="col">
+                                    <label>Đường dẫn video bài giảng</label>
+                                    <input
+                                        type="text"
+                                        name="video"
+                                        value={this.state.linkVideo}
+                                        onChange={this.handleChange}
+                                        class="form-control" placeholder="Đường dẫn video bài giảng" required />
+                                    <div className="row" style={{ marginTop: 20, justifyContent: 'center' }}>
+                                        <Button size="sm" style={{ width: 100 }}>Lưu</Button>
+                                        <Button size="sm" style={{ width: 100, marginLeft: 20 }} onClick={() => this.closeModal()}>Hủy</Button>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </Modal>
             </div>
