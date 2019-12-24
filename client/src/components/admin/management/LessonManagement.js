@@ -73,11 +73,11 @@ class LessonManagement extends React.Component {
                                     <td>{l.section.title}</td>
                                     <td>{l.viewNumber}</td>
                                     <td>{l.downloaded}</td>
-                                    {/* <td style={{ textAlign: 'center' }}>
+                                    <td style={{ textAlign: 'center' }}>
                                         <Button size="sm" onClick={() => this.openModal()}>
                                             <i class="fa fa-wrench" aria-hidden="true"></i>
                                         </Button>
-                                    </td> */}
+                                    </td>
                                 </tr>
                             )}
                         </tbody>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Table, Button } from 'react-bootstrap';
 import Modal from 'react-awesome-modal';
 import Swal from 'sweetalert2';
+import { da } from 'date-fns/locale';
 
 class ExerciseManagement extends React.Component {
 
@@ -10,7 +11,7 @@ class ExerciseManagement extends React.Component {
         this.state = {
             exercises: [],
             lessons: [],
-            exercise: Object,
+            exercise: {},
             visible: false,
             edit: false,
             question: '',
@@ -34,19 +35,23 @@ class ExerciseManagement extends React.Component {
     }
 
     openForEdit(exerciseId) {
-        this.getExercise(exerciseId);
-        var exercise = this.state.exercise;
-        this.setState({
-            visible: true,
-            edit: true,
-            exerciseId: exerciseId,
-            question: exercise.content,
-            awA: exercise.answers[0].content,
-            awB: exercise.answers[1].content,
-            awC: exercise.answers[2].content,
-            awD: exercise.answers[3].content,
-            awTrue: exercise.correctAnswer
-        })
+        this.getExercise(exerciseId, (data) => {
+            var exercise = data;
+            this.setState({
+                visible: true,
+                edit: true,
+                exerciseId: exerciseId,
+                question: exercise.content,
+                awA: exercise.answers[0].content,
+                awB: exercise.answers[1].content,
+                awC: exercise.answers[2].content,
+                awD: exercise.answers[3].content,
+                awTrue: exercise.correctAnswer,
+                type: exercise.type,
+                lessonId: exercise.lesson._id
+            })
+        });
+
     }
 
     closeModal() {
@@ -73,13 +78,13 @@ class ExerciseManagement extends React.Component {
             })
     }
 
-    getExercise(exerciseId){
+    getExercise(exerciseId, callback) {
         fetch('http://localhost:5000/exercises/' + exerciseId)
             .then(results => {
                 return results.json();
             }).then(data => {
                 this.setState({ exercise: data })
-                console.log(this.state.exercise);
+                callback(data);
             })
     }
 
@@ -180,7 +185,7 @@ class ExerciseManagement extends React.Component {
             }).then(data => {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Tạo bài tập thành công',
+                    title: 'Cập bài tập thành công',
                 });
                 this.loadExercises();
                 this.closeModal();
