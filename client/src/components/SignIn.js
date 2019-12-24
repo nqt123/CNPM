@@ -56,7 +56,11 @@ class SignIn extends Component{
               text: 'Vui lòng kiểm tra lại tài khoản hoặc mật khẩu!',
             });
           }
-          this.props.history.push({pathname:'/',state:{users:respond}})
+          if(respond.position === "User") {
+            this.props.history.push({pathname:'/',state:{users:respond}})
+          } else {
+            this.props.history.push({pathname:'/admin',state:{users:respond}})
+          }
         })
       .catch(err => console.log(err));
   }

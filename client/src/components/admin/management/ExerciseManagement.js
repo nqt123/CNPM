@@ -25,13 +25,17 @@ class ExerciseManagement extends React.Component {
         });
     }
 
-    componentDidMount() {
+    loadExercises() {
         fetch('http://localhost:5000/exercises')
             .then(results => {
                 return results.json();
             }).then(data => {
                 this.setState({ lessons: data })
             })
+    }
+
+    componentDidMount() {
+        this.loadExercises();
     }
     render() {
         const { exercises } = this.state;
@@ -50,7 +54,7 @@ class ExerciseManagement extends React.Component {
                                 <th>Câu hỏi</th>
                                 <th>Các đáp án</th>
                                 <th>Đáp án đúng</th>
-                                <th></th>
+                                {/* <th></th> */}
                             </tr>
                         </thead>
                         <tbody>
@@ -60,16 +64,16 @@ class ExerciseManagement extends React.Component {
                                     <td></td>
                                     <td></td>
                                     <td></td>
-                                    <td style={{ textAlign: 'center' }}>
+                                    {/* <td style={{ textAlign: 'center' }}>
                                         <Button size="sm">
                                             <i class="fa fa-wrench" aria-hidden="true"></i>
                                         </Button>
-                                    </td>
+                                    </td> */}
                                 </tr>
                             )}
                         </tbody>
                     </Table>
-                    <Modal visible={this.state.visible} width="80%" height="80%" effect="fadeInDown">
+                    <Modal visible={this.state.visible} width="50%" height="80%" effect="fadeInDown">
                         <div>
                             <a href="javascript:void(0);" onClick={() => this.closeModal()}>Close</a>
                         </div>

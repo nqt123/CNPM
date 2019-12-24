@@ -11,13 +11,29 @@ class CommentManagement extends React.Component {
         }
     }
 
-    componentDidMount() {
+    deleteComment(commentId) {
+        fetch('http://localhost:5000/comments/' + commentId, {
+            method: 'DELETE'
+        }
+        ).then(
+            data => {
+                alert("Xóa thành công");
+                this.loadComments();
+            }
+        )
+    }
+
+    loadComments() {
         fetch('http://localhost:5000/comments')
             .then(results => {
                 return results.json();
             }).then(data => {
                 this.setState({ comments: data })
             })
+    }
+
+    componentDidMount() {
+        this.loadComments();
     }
 
     render() {
@@ -35,7 +51,7 @@ class CommentManagement extends React.Component {
                                 <th>Tên người dùng</th>
                                 <th>Tài khoản</th>
                                 <th>Nội dung</th>
-                                <th>Đánh giá</th>   
+                                <th>Đánh giá</th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -48,8 +64,8 @@ class CommentManagement extends React.Component {
                                     <td>{l.content}</td>
                                     <td>{l.rated} sao</td>
                                     <td style={{ textAlign: 'center' }}>
-                                        <Button size="sm" variant="danger">
-                                            <i class="fa fa-window-close" aria-hidden="true"></i>
+                                        <Button size="sm" variant="danger" onClick={() => this.deleteComment(l._id)}>
+                                            <i className="fa fa-window-close" aria-hidden="true"></i>
                                         </Button>
                                     </td>
                                 </tr>
@@ -58,7 +74,7 @@ class CommentManagement extends React.Component {
                     </Table>
                 </div>
             </div>
-    
+
         );
     }
 }
