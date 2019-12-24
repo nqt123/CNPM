@@ -306,7 +306,12 @@ textarea:focus,.loaidethi:focus
 .tieudebaigiang{
   color: black;
 }
+<<<<<<< HEAD
 .thongtincn
 {
   margin: 100px;
+=======
+.formLayout {
+  margin-left: 200px;
+>>>>>>> 1f015da410ac6e64a19d2eea91f9ffd07123d022
 }
