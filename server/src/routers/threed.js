@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const ThreeD = require("../models/threeD");
+const ThreeD = require("../models/threed");
 router.get("/threeDs", async (req, res) => {
   try {
     // * Query for Search
