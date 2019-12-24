@@ -23,13 +23,17 @@ class LessonManagement extends React.Component {
         });
     }
 
-    componentDidMount() {
+    loadLesson() {
         fetch('http://localhost:5000/lessons')
             .then(results => {
                 return results.json();
             }).then(data => {
                 this.setState({ lessons: data })
             })
+    }
+
+    componentDidMount() {
+        this.loadLesson();
     }
 
     render() {
