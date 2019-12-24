@@ -28,7 +28,15 @@ class ExerciseManagement extends React.Component {
     openModal() {
         this.setState({
             visible: true,
-            edit: false
+            edit: false,
+            question: '',
+            awA: '',
+            awB: '',
+            awC: '',
+            awD: '',
+            awTrue: '',
+            type: '',
+            lessonId: '',
         });
         this.loadLesson();
     }
@@ -225,7 +233,7 @@ class ExerciseManagement extends React.Component {
                                 {exercises.map((e, n) =>
                                     <tr>
                                         <td>{++n}</td>
-                                        <td></td>
+                                        <td>{e.lesson.title}</td>
                                         <td>{e.content}</td>
                                         <td>
                                             <ul style={{ listStyle: 'none' }}>
@@ -285,17 +293,19 @@ class ExerciseManagement extends React.Component {
                                             <input type="text" name="awTrue" value={awTrue} onChange={this.handleChange} class="form-control" placeholder="Đáp án chính xác" required />
                                         </div>
                                     </div>
-                                    <div className="row" style={{ marginTop: 20 }}>
+                                    <div className="col" style={{ marginTop: 20 }}>
                                         <div className="col">
                                             <label>Loại bài kiểm tra</label>
                                             <select style={{ marginLeft: 10 }} name="type" value={type} onChange={this.handleChange}>
-                                                <option value="Kiểm tra" selected>Kiểm tra</option>
+                                                <option>Hãy chọn loại câu hỏi</option>
+                                                <option value="Kiểm tra">Kiểm tra</option>
                                                 <option value="Thường">Thường</option>
                                             </select>
                                         </div>
                                         <div className="col">
                                             <label>Bài học</label>
                                             <select style={{ marginLeft: 10 }} name="lessonId" value={lessonId} onChange={this.handleChange}>
+                                                <option>Hãy chọn bài</option>
                                                 {
                                                     lessons.map(l =>
                                                         <option value={l._id}>{l.title}</option>
