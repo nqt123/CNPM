@@ -1,9 +1,35 @@
 import React,{Component} from 'react';
 import { Tab,Row,Col,Nav} from 'react-bootstrap';
 import './../App.css';
-import Tracnghiem from './Tracnghiem';
 class TabKiemtra extends Component{
+  constructor(props)
+  {
+    super(props)
+    this.state={
+      cauhois:[]
+    }
+  }
+  componentDidMount()
+  {
+    fetch('http://localhost:5000/exercises',{
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }).then(res => res.json())
+      .then(respond => {
+        this.setState({
+          cauhois:respond
+        })
+      })
+      .catch(err => console.log(err));
+  }
   render(){
+    const {cauhois}=this.state;
+    var bgchuong1=cauhois.filter((cauhoi,index)=>{
+      return cauhoi.lesson.title=="Các nguyên tố hóa học và nước"
+    });
+    console.log(bgchuong1)
   return(
     <div className="tabbaigiang">
       <Tab.Container id="left-tabs-example" defaultActiveKey="first">
@@ -11,18 +37,7 @@ class TabKiemtra extends Component{
         <Col sm={4} className="traitabbaigiang" id="changescroll">
           <Nav variant="pills" className="flex-column">
             <span className="chuong">Chương I: Thành phần hóa học của tế bào</span>
-            <Nav.Item>
-              <Nav.Link eventKey="1" className="bai">Bài 1: Các nguyên tố hóa học và nước</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="2" className="bai">Bài 2: Cacbohiđrat và lipit</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="3" className="bai">Bài 3: Prôtein</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="4" className="bai">Bài 4: Axit nuclêic</Nav.Link>
-            </Nav.Item>
+           
             <span className="chuong">Chương II: Cấu trúc của tế bào</span>
             <Nav.Item>
               <Nav.Link eventKey="5" className="bai">Bài 5: Tế bào nhân sơ</Nav.Link>
@@ -87,12 +102,7 @@ class TabKiemtra extends Component{
         </Col>
         <Col sm={8} className="phaitabbaigiang">
           <Tab.Content >
-            <Tab.Pane eventKey="1">
-              <Tracnghiem />
-            </Tab.Pane>
-            <Tab.Pane eventKey="2">
-               
-            </Tab.Pane>
+            
           </Tab.Content>
         </Col>
       </Row>

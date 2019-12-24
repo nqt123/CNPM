@@ -22,6 +22,7 @@ class Kiemtra extends Component{
     this.setState({
       user: ""
     });
+    this.props.history.push("/");
     this.render();
 }
   render(){

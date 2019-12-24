@@ -11,7 +11,6 @@ class TabBaigiang extends Component{
     this.state={
       users:{},
       passwordnew1:'',
-      passwordold:'',
       passwordnew2:''
     }
   }
@@ -33,8 +32,9 @@ class TabBaigiang extends Component{
   }
   handleClick=(e)=>{
     e.preventDefault();
-    var {passwordold,passwordnew1,passwordnew2,users}=this.state;
+    var {passwordnew1,passwordnew2,users}=this.state;
     var title="";
+    console.log(this.state.users);
     if(users)
     {
       try{
@@ -43,8 +43,8 @@ class TabBaigiang extends Component{
       {
         title="";
       }
-    }
-    if(passwordold=""||passwordnew1==""||passwordnew2=="")
+    }   
+    if(passwordnew1==""||passwordnew2=="")
     {
       Swal.fire({
               icon: 'error',
@@ -62,14 +62,6 @@ class TabBaigiang extends Component{
               text: 'Vui lòng điền lại thông tin',
       });
       }
-      else if(passwordnew1!=title)
-      {
-        Swal.fire({
-              icon: 'error',
-              title: 'Thất bại',
-              text: 'Vui lòng điền lại thông tin'
-            })
-      }
       else
       {
     fetch('http://localhost:5000/users/login/'+title, {
@@ -78,7 +70,7 @@ class TabBaigiang extends Component{
             'Content-Type': 'application/json',  
         },
       body: JSON.stringify({
-       _id:title
+       password:passwordnew1
       })
     }).then(res => res.json())
       .then(respond => 
@@ -97,10 +89,11 @@ class TabBaigiang extends Component{
     this.setState({
       users: ""
     });
+    this.props.history.push("/");
     this.render();
   }
   render(){
-    const {users,passwordold,passwordnew1,passwordnew2}=this.state;
+    const {users,passwordnew1,passwordnew2}=this.state;
     var name="",diachi="",email="",cmnd="",ngaysinh="",sdt="",gioitinh="";
     if(users){
       try{
@@ -186,10 +179,6 @@ class TabBaigiang extends Component{
             </Tab.Pane>
             <Tab.Pane eventKey="2">
               <Form>
-                <Form.Group>
-                  <Form.Label className="tt1">Mật khẩu cũ</Form.Label>
-                  <Form.Control type="password" value={passwordold} onChange={this.onChange} name="passwordold"/>
-                </Form.Group>
                 <Form.Group>
                   <Form.Label className="tt1">Mật khẩu mới</Form.Label>
                   <Form.Control type="password" value={passwordnew1} name="passwordnew1" onChange={this.onChange}/>

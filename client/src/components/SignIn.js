@@ -127,9 +127,6 @@ class SignIn extends Component{
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2" className={classes.taikhoan}>
-                Quên mật khẩu?
-              </Link>
             </Grid>
             <Grid item>
               <Link href="/dang-ki" variant="body2" className={classes.taikhoan}>

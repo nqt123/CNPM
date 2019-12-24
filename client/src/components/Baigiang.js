@@ -17,12 +17,12 @@ class Baigiang extends Component{
 			    });
 		}
 	}
-  
 	logout=()=>{
 	localStorage.removeItem('taikhoan');
     this.setState({
       user: ""
     });
+    this.props.history.push("/");
     this.render();
   }
   render(){
