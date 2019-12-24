@@ -60,8 +60,45 @@ class CommentManagement extends React.Component {
 
     render() {
         const { comments } = this.state;
-        console.log(comments);
-        if (comments) {
+        if (comments.userId) {
+            return (
+                <div>
+                    <div style={{ width: '100%', borderTop: 0, borderLeft: 0, borderRight: 0, borderBottom: 2, borderStyle: 'solid', marginBottom: 20 }}>
+                        <h2>Phản hồi của người dùng</h2>
+                    </div>
+                    <div style={{ marginTop: 20 }}>
+                        <Table striped bordered hover>
+                            <thead>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tên người dùng</th>
+                                    <th>Tài khoản</th>
+                                    <th>Nội dung</th>
+                                    <th>Đánh giá</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {comments.map((c, i) =>
+                                    <tr>
+                                        <td>{++i}</td>
+                                        <td>{c.userId.lastName} {c.userId.firstName}</td>
+                                        <td>{c.userId.username}</td>
+                                        <td>{c.content}</td>
+                                        <td>{c.rated} sao</td>
+                                        <td style={{ textAlign: 'center' }}>
+                                            <Button size="sm" variant="danger" onClick={() => this.deleteComment(c._id)}>
+                                                <i className="fa fa-window-close" aria-hidden="true"></i>
+                                            </Button>
+                                        </td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </Table>
+                    </div>
+                </div>
+            );
+        } else {
             return (
                 <div>
                     <div style={{ width: '100%', borderTop: 0, borderLeft: 0, borderRight: 0, borderBottom: 2, borderStyle: 'solid', marginBottom: 20 }}>
@@ -98,32 +135,6 @@ class CommentManagement extends React.Component {
                         </Table>
                     </div>
                 </div>
-
-            );
-        } else {
-            return (
-                <div>
-                    <div style={{ width: '100%', borderTop: 0, borderLeft: 0, borderRight: 0, borderBottom: 2, borderStyle: 'solid', marginBottom: 20 }}>
-                        <h2>Phản hồi của người dùng</h2>
-                    </div>
-                    <div style={{ marginTop: 20 }}>
-                        <Table striped bordered hover>
-                            <thead>
-                                <tr>
-                                    <th>STT</th>
-                                    <th>Tên người dùng</th>
-                                    <th>Tài khoản</th>
-                                    <th>Nội dung</th>
-                                    <th>Đánh giá</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </Table>
-                    </div>
-                </div>
-
             );
         }
     }
