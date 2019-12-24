@@ -7,6 +7,7 @@ import CommentManagement from "./management/CommentManagement";
 import ExerciseManagement from "./management/ExerciseManagement";
 import LessonManagement from "./management/LessonManagement";
 import UserManagement from "./management/UserManagement";
+import ExamManagemnt from "./management/ExamManagement";
 
 class Dashboard extends Component {
     state = {
@@ -62,6 +63,14 @@ class Dashboard extends Component {
                                             Quản lý người dùng
                                     </NavText>
                                     </NavItem>
+                                    <NavItem eventKey="exam">
+                                        <NavIcon>
+                                            <i className="fa fa-fw fa-folder" style={{ fontSize: '1.75em' }} />
+                                        </NavIcon>
+                                        <NavText>
+                                            Quản lý người dùng
+                                    </NavText>
+                                    </NavItem>
                                     <NavItem eventKey="comment">
                                         <NavIcon>
                                             <i className="fa fa-fw fa-comment" style={{ fontSize: '1.75em' }} />
@@ -82,6 +91,7 @@ class Dashboard extends Component {
                                 <Route path="/admin" exact component={props => <LessonManagement />} />
                                 <Route path="/admin/lesson" exact component={props => <LessonManagement />} />
                                 <Route path="/admin/exercise" component={props => <ExerciseManagement />} />
+                                <Route path="/admin/exam" component={props => <ExamManagemnt />} />
                                 <Route path="/admin/users" component={props => <UserManagement />} />
                                 <Route path="/admin/comment" component={props => <CommentManagement />} />
                             </main>
