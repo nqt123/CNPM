@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Button } from 'react-bootstrap';
+import { Table, Button, Form } from 'react-bootstrap';
 import Modal from 'react-awesome-modal';
 
 
@@ -74,8 +74,52 @@ class ExerciseManagement extends React.Component {
                         </tbody>
                     </Table>
                     <Modal visible={this.state.visible} width="50%" height="80%" effect="fadeInDown">
-                        <div>
-                            <a href="javascript:void(0);" onClick={() => this.closeModal()}>Close</a>
+                        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                            <Form style={{ width: '50%' }}>
+                                <Form.Group controlId="formBasicEmail">
+                                    <Form.Label>Câu hỏi</Form.Label>
+                                    <Form.Control type="text" placeholder="Nhập vào câu hỏi" />
+                                </Form.Group>
+
+                                <Form.Group controlId="formBasicPassword">
+                                    <Form.Label>Đáp án A</Form.Label>
+                                    <Form.Control type="password" placeholder="Đáp án A" />
+                                </Form.Group>
+
+                                <Form.Group controlId="formBasicPassword">
+                                    <Form.Label>Đáp án B</Form.Label>
+                                    <Form.Control type="password" placeholder="Password" />
+                                </Form.Group>
+
+                                <Form.Group controlId="formBasicPassword">
+                                    <Form.Label>Đáp án C</Form.Label>
+                                    <Form.Control type="password" placeholder="Password" />
+                                </Form.Group>
+
+                                <Form.Group controlId="formBasicPassword">
+                                    <Form.Label>Đáp án D</Form.Label>
+                                    <Form.Control type="password" placeholder="Password" />
+                                </Form.Group>
+
+                                <Form.Group controlId="formBasicPassword">
+                                    <Form.Label>Đáp án chính xác</Form.Label>
+                                    <Form.Control type="password" placeholder="Password" />
+                                </Form.Group>
+
+                                <Form.Group controlId="formBasicPassword">
+                                    <Form.Label>Bài</Form.Label>
+                                    <Form.Control type="password" placeholder="Password" />
+                                </Form.Group>
+
+                                <Form.Group controlId="formBasicPassword">
+                                    <Form.Label>Loại</Form.Label>
+                                    <Form.Control type="password" placeholder="Password" />
+                                </Form.Group>
+                               
+                                <Button variant="primary" type="submit">
+                                    Tạo
+                                </Button>
+                            </Form>
                         </div>
                     </Modal>
                 </div>
