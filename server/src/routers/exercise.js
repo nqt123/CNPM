@@ -4,8 +4,12 @@ const router = express.Router();
 const Exercise = require("../models/exercise");
 
 router.get("/exercises", async (req, res) => {
+  const query = {};
+  if (req.query.lessonId) {
+    query.lesson = req.query.lessonId;
+  }
   try {
-    await Exercise.find({})
+    await Exercise.find(query)
       .populate("lesson")
       .exec(function(error, exercises) {
         res.status(200).send(exercises);

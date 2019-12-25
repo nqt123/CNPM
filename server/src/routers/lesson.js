@@ -6,7 +6,7 @@ router.post("/lessons", async (req, res) => {
   const lesson = new Lesson(req.body);
   try {
     await lesson.save();
-    res.status(201).send(query);
+    res.status(201).send(lesson);
   } catch (error) {
     res.status(400).send({ error });
   }
