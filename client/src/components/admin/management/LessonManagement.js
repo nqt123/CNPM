@@ -28,7 +28,13 @@ class LessonManagement extends React.Component {
 
         this.setState({
             visible: true,
-            edit: false
+            edit: false,
+            title: '',
+            content: '',
+            order: '',
+            sectionTitle: '',
+            linkVideo: '',
+
         })
 
     }
@@ -278,6 +284,9 @@ class LessonManagement extends React.Component {
                             <FormControl style={{ width: 300 }} name="searchText" value={this.state.searchText} onChange={this.handleChange} type="text" placeholder="Tên bài giảng" className="ml-sm-2" size="sm" />
                             <InputGroup.Append>
                                 <Button size="sm" onClick={() => this.searchLesson()}><i className="fa fa-search" aria-hidden="true"></i></Button>
+                            </InputGroup.Append>
+                            <InputGroup.Append style={{ marginLeft: 10 }}>
+                                <Button size="sm" onClick={() => this.loadLesson()}>Tất cả</Button>
                             </InputGroup.Append>
                             <InputGroup.Append style={{ marginLeft: 10 }}>
                                 <Button size="sm" onClick={() => this.openModal()}>Thêm bài giảng</Button>

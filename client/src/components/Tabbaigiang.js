@@ -12,7 +12,7 @@ class TabBaigiang extends Component{
   }
   componentDidMount()
   {
-    fetch('http://localhost:5000/lessons',{
+    fetch('https://nqt-api-cnpm.herokuapp.com/lessons',{
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -104,6 +104,7 @@ class TabBaigiang extends Component{
               <iframe className="video" frameborder="0" 
               src={a.video} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
               </iframe>
+      <p className="text-center">{a.content}</p>
         </Tab.Pane>
         )
     });
@@ -114,6 +115,7 @@ class TabBaigiang extends Component{
               <iframe className="video" frameborder="0" 
               src={a.video} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
               </iframe>
+              <p className="text-center">{a.content}</p>
         </Tab.Pane>
         )
     });
@@ -124,6 +126,7 @@ class TabBaigiang extends Component{
               <iframe className="video" frameborder="0" 
               src={a.video} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
               </iframe>
+              <p className="text-center">{a.content}</p>
         </Tab.Pane>
         )
     });
@@ -134,6 +137,7 @@ class TabBaigiang extends Component{
               <iframe className="video" frameborder="0" 
               src={a.video} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
               </iframe>
+              <p className="text-center">{a.content}</p>
         </Tab.Pane>
         )
     });
@@ -144,6 +148,7 @@ class TabBaigiang extends Component{
               <iframe className="video" frameborder="0"
               src={a.video} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
               </iframe>
+              <p className="text-center">{a.content}</p>
         </Tab.Pane>
         )
     });
@@ -154,6 +159,7 @@ class TabBaigiang extends Component{
               <iframe className="video" frameborder="0" 
               src={a.video} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
               </iframe>
+              <p className="text-center">{a.content}</p>
         </Tab.Pane>
         )
     });
@@ -164,6 +170,7 @@ class TabBaigiang extends Component{
               <iframe className="video" frameborder="0"  
               src={a.video} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
               </iframe>
+             <p className="text-center">{a.content}</p>
         </Tab.Pane>
         )
     });
