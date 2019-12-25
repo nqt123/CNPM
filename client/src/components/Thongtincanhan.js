@@ -64,7 +64,7 @@ class TabBaigiang extends Component{
       }
       else
       {
-    fetch('http://localhost:5000/users/login/'+title, {
+    fetch('http://localhost:5000/users/'+title, {
         method: 'PATCH',
         headers: {
             'Content-Type': 'application/json',  

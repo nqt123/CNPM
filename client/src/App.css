@@ -54,6 +54,7 @@
   position: relative;
   animation:myAnimation 1.5s ease-out;
   top: 0px;
+  /* text-shadow: 0 2px 2px #000; */
 }
 .changetext:hover
 {
@@ -218,6 +219,12 @@
 .traitabbaigiang
 {
   height:550px;
+  overflow: auto;
+  padding-left: 20px;
+}
+.traitabbaigiangs
+{
+  height:740px;
   overflow: auto;
   padding-left: 20px;
 }

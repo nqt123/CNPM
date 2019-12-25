@@ -52,7 +52,7 @@ const routes=[
 	{
 		path:'/giai-tri',
 		exact:false,
-		main:()=><Giaitri />
+		main:({history})=><Giaitri history={history}/>
 	}
 ];
 export default routes;
