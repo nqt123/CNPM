@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Table } from 'react-bootstrap';
+import { Button, Table, FormControl, InputGroup } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 
 class UserManagement extends React.Component {
@@ -8,6 +8,7 @@ class UserManagement extends React.Component {
         super(props);
         this.state = {
             users: [],
+            searchText: ''
         }
     }
 
@@ -39,6 +40,28 @@ class UserManagement extends React.Component {
         })
     }
 
+    searchUser() {
+        fetch('https://nqt-api-cnpm.herokuapp.com/users?username=' + this.state.searchText, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZTAyMmQxZTIyM2RkNTM2YjQ4NWQ1NDkiLCJpYXQiOjE1NzcyMDA5Mjd9.R1m3pwVo72IdroENNdAgc0oSoUsjCHronk3pkbSmdvU'
+            }
+        })
+            .then(results => {
+                return results.json();
+            }).then(data => {
+                if (data != null) {
+                    this.setState({ users: data })
+                } else {
+                    return Swal.fire({
+                        icon: 'error',
+                        title: 'Không tìm thấy người dùng tương ứng',
+                    });
+                }
+            })
+    }
+
     loadUsers() {
         fetch('https://nqt-api-cnpm.herokuapp.com/users', {
             method: 'GET',
@@ -51,11 +74,17 @@ class UserManagement extends React.Component {
                 return results.json();
             }).then(data => {
                 if (data != null) {
-                    this.setState({ users: data })
-                    console.log(this.state.users);
+                    this.setState({ 
+                        users: data,
+                        searchText: '' 
+                    })
                 }
             })
     }
+
+    handleChange = event => {
+        this.setState({ searchText: event.target.value });
+    };
 
     componentDidMount() {
         this.loadUsers();
@@ -67,6 +96,17 @@ class UserManagement extends React.Component {
             <div>
                 <div style={{ width: '100%', borderTop: 0, borderLeft: 0, borderRight: 0, borderBottom: 2, borderStyle: 'solid', marginBottom: 20 }}>
                     <h2>Quản lý người dùng</h2>
+                </div>
+                <div style={{ width: '40%' }}>
+                    <InputGroup>
+                        <FormControl type="text" placeholder="Tên đăng nhập" className="ml-sm-2" size="sm" value={this.state.searchText} onChange={this.handleChange} />
+                        <InputGroup.Append>
+                            <Button size="sm" onClick={() => this.searchUser()}><i className="fa fa-search" aria-hidden="true"></i></Button>
+                        </InputGroup.Append>
+                        <InputGroup.Append style={{ marginLeft: 10 }}>
+                            <Button size="sm" onClick={() => this.loadUsers()}>Tất cả</Button>
+                        </InputGroup.Append>
+                    </InputGroup>
                 </div>
                 <div style={{ marginTop: 20 }}>
                     <Table striped bordered hover>
@@ -84,9 +124,9 @@ class UserManagement extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {users.map(l =>
+                            {users.map((l, i) =>
                                 <tr>
-                                    <td>1</td>
+                                    <td>{++i}</td>
                                     <td>{l.username}</td>
                                     <td>{l.lastName} {l.firstName}</td>
                                     <td>{l.phoneNumber}</td>
