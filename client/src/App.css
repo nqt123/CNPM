@@ -346,4 +346,9 @@ textarea:focus,.loaidethi:focus
   margin-top: 30px;
 }
 
+.auto-scroll {
+  overflow: auto;
+  height: calc(100vh - 234px);
+}
+
 

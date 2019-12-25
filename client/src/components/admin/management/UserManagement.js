@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, Table, FormControl, InputGroup } from 'react-bootstrap';
 import Swal from 'sweetalert2';
+import Modal from 'react-awesome-modal';
+
 
 class UserManagement extends React.Component {
 
@@ -8,9 +10,69 @@ class UserManagement extends React.Component {
         super(props);
         this.state = {
             users: [],
-            searchText: ''
+            searchText: '',
+            username: '',
+            password: '',
+            phone: '',
+            gender: '',
+            address: '',
+            email: '',
+            visible: false
         }
     }
+
+    openModal() {
+
+        this.setState({
+            visible: true,
+            username: '',
+            password: '',
+            phone: '',
+            gender: '',
+            address: '',
+            email: '',
+        })
+
+    }
+
+    closeModal() {
+        this.setState({
+            visible: false
+        });
+    }
+
+    createUser() {
+        const { username, password, phone, gender, address, email } = this.state;
+        if (!username || !password || !email) {
+            return Swal.fire({
+                icon: 'error',
+                title: 'Thiếu thông tin',
+                text: 'Vui lòng điền đầy đủ thông tin!',
+            });
+        }
+        fetch('https://nqt-api-cnpm.herokuapp.com/users/signup', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                username, password, phone, gender, address, email, position: "User"
+            })
+        }).then(res => res.json())
+            .then(respond => {
+                if (!respond.user) {
+                    return Swal.fire({
+                        icon: 'error',
+                        title: 'Tài khoản đã tồn tại',
+                        text: 'Vui lòng điền lại tài khoản!',
+                    });
+                }
+                this.loadUsers();
+                this.closeModal();
+            })
+            .catch(err => console.log(err));
+    }
+
 
     deleteUser(userId) {
         Swal.fire({
@@ -74,16 +136,16 @@ class UserManagement extends React.Component {
                 return results.json();
             }).then(data => {
                 if (data != null) {
-                    this.setState({ 
+                    this.setState({
                         users: data,
-                        searchText: '' 
+                        searchText: ''
                     })
                 }
             })
     }
 
-    handleChange = event => {
-        this.setState({ searchText: event.target.value });
+    handleChange = ({ target }) => {
+        this.setState({ [target.name]: target.value });
     };
 
     componentDidMount() {
@@ -91,7 +153,7 @@ class UserManagement extends React.Component {
     }
 
     render() {
-        const { users } = this.state;
+        const { users, username, password, phone, gender, address, email } = this.state;
         return (
             <div>
                 <div style={{ width: '100%', borderTop: 0, borderLeft: 0, borderRight: 0, borderBottom: 2, borderStyle: 'solid', marginBottom: 20 }}>
@@ -99,12 +161,15 @@ class UserManagement extends React.Component {
                 </div>
                 <div style={{ width: '40%' }}>
                     <InputGroup>
-                        <FormControl type="text" placeholder="Tên đăng nhập" className="ml-sm-2" size="sm" value={this.state.searchText} onChange={this.handleChange} />
+                        <FormControl type="text" placeholder="Tên đăng nhập" className="ml-sm-2" size="sm" name="searchText" value={this.state.searchText} onChange={this.handleChange} />
                         <InputGroup.Append>
                             <Button size="sm" onClick={() => this.searchUser()}><i className="fa fa-search" aria-hidden="true"></i></Button>
                         </InputGroup.Append>
                         <InputGroup.Append style={{ marginLeft: 10 }}>
                             <Button size="sm" onClick={() => this.loadUsers()}>Tất cả</Button>
+                        </InputGroup.Append>
+                        <InputGroup.Append style={{ marginLeft: 10 }}>
+                            <Button size="sm" onClick={() => this.openModal()}>Thêm người dùng</Button>
                         </InputGroup.Append>
                     </InputGroup>
                 </div>
@@ -144,6 +209,57 @@ class UserManagement extends React.Component {
                         </tbody>
                     </Table>
                 </div>
+                <Modal visible={this.state.visible} width="50%" height="80%" effect="fadeInDown">
+                    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
+                        <form style={{ width: '80%' }}>
+                            <div className="col">
+                                <div className="col">
+                                    <input
+                                        type="text"
+                                        name="username"
+                                        value={username}
+                                        onChange={this.handleChange}
+                                        class="form-control" placeholder="Tên đăng nhập" required />
+                                    <input
+                                        type="password"
+                                        name="password"
+                                        value={password}
+                                        onChange={this.handleChange}
+                                        class="form-control" placeholder="Mật khẩu" required />
+                                    <input
+                                        type="text"
+                                        name="phone"
+                                        value={phone}
+                                        onChange={this.handleChange}
+                                        class="form-control" placeholder="Số điện thoại" required />
+                                    <input
+                                        type="text"
+                                        name="gender"
+                                        value={gender}
+                                        onChange={this.handleChange}
+                                        class="form-control" placeholder="Giới tính" required />
+                                    <input
+                                        type="text"
+                                        name="address"
+                                        value={address}
+                                        onChange={this.handleChange}
+                                        class="form-control" placeholder="Địa chỉ" required />
+                                    <input
+                                        type="text"
+                                        name="email"
+                                        value={email}
+                                        onChange={this.handleChange}
+                                        class="form-control" placeholder="Email" required />
+
+                                </div>
+                            </div>
+                            <div className="row" style={{ justifyContent: 'center', marginTop: 30 }}>
+                                <Button size="sm" style={{ width: 100 }} onClick={() => this.createUser()}>Tạo người dùng</Button>
+                                <Button size="sm" style={{ width: 100, marginLeft: 10 }} onClick={() => this.closeModal()}>Hủy</Button>
+                            </div>
+                        </form>
+                    </div>
+                </Modal>
             </div>
         );
     }
