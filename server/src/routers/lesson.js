@@ -6,14 +6,18 @@ router.post("/lessons", async (req, res) => {
   const lesson = new Lesson(req.body);
   try {
     await lesson.save();
-    res.status(201).send(lesson);
+    res.status(201).send(query);
   } catch (error) {
     res.status(400).send({ error });
   }
 });
 router.get("/lessons", async (req, res) => {
+  const query = {};
+  if (req.query.title) {
+    query.title = { $regex: req.query.title, $options: "gi" };
+  }
   try {
-    await Lesson.find({})
+    await Lesson.find(query)
       .populate("updatedBy createdBy teachedBy")
       .exec(function(err, lessons) {
         if (!lessons) {
