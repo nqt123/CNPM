@@ -63,14 +63,14 @@ class Dashboard extends Component {
                                             Quản lý người dùng
                                     </NavText>
                                     </NavItem>
-                                    {/* <NavItem eventKey="exam">
+                                    <NavItem eventKey="exam">
                                         <NavIcon>
                                             <i className="fa fa-fw fa-folder" style={{ fontSize: '1.75em' }} />
                                         </NavIcon>
                                         <NavText>
                                             Quản lý người dùng
                                     </NavText>
-                                    </NavItem> */}
+                                    </NavItem>
                                     <NavItem eventKey="comment">
                                         <NavIcon>
                                             <i className="fa fa-fw fa-comment" style={{ fontSize: '1.75em' }} />

@@ -60,7 +60,8 @@ class CommentManagement extends React.Component {
 
     render() {
         const { comments } = this.state;
-        if (comments.userId) {
+        console.log(comments);
+        if (comments) {
             return (
                 <div>
                     <div style={{ width: '100%', borderTop: 0, borderLeft: 0, borderRight: 0, borderBottom: 2, borderStyle: 'solid', marginBottom: 20 }}>
