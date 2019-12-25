@@ -74,6 +74,7 @@ class CommentManagement extends React.Component {
                                     <th>STT</th>
                                     <th>Tên người dùng</th>
                                     <th>Tài khoản</th>
+                                    <th>Bài</th>
                                     <th>Nội dung</th>
                                     <th>Đánh giá</th>
                                     <th></th>
@@ -85,6 +86,7 @@ class CommentManagement extends React.Component {
                                         <td>{++i}</td>
                                         <td>{c.userId.lastName} {c.userId.firstName}</td>
                                         <td>{c.userId.username}</td>
+                                        <td>{c.lessonId != null ? c.lessonId : "Tế bào nhân sơ"}</td>
                                         <td>{c.content}</td>
                                         <td>{c.rated} sao</td>
                                         <td style={{ textAlign: 'center' }}>

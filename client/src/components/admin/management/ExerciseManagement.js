@@ -205,8 +205,58 @@ class ExerciseManagement extends React.Component {
             })
     }
 
+    deleteExercise(exerciseId) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.value) {
+                fetch('https://nqt-api-cnpm.herokuapp.com/exercises/' + exerciseId, {
+                    method: 'DELETE'
+                }
+                ).then(
+                    data => {
+                        Swal.fire(
+                            'Deleted!',
+                            'Your file has been deleted.',
+                            'success'
+                        )
+                        this.loadExercises();
+                    }
+                )
+            }
+        })
+    }
+
+    searchExericse() {
+        fetch('https://nqt-api-cnpm.herokuapp.com/exercises?lessonId=' + this.state.lessonId, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        })
+            .then(results => {
+                return results.json();
+            }).then(data => {
+                if (data != null) {
+                    this.setState({ exercises: data })
+                } else {
+                    return Swal.fire({
+                        icon: 'error',
+                        title: 'Không có bài tập người dùng tương ứng',
+                    });
+                }
+            })
+    }
+
     componentDidMount() {
         this.loadExercises();
+        this.loadLesson();
     }
     render() {
         const { exercises, lessons, question, awA, awB, awC, awD, awTrue, type, lessonId } = this.state;
@@ -216,7 +266,24 @@ class ExerciseManagement extends React.Component {
                     <div style={{ width: '100%', borderTop: 0, borderLeft: 0, borderRight: 0, borderBottom: 2, borderStyle: 'solid', marginBottom: 20 }}>
                         <h2>Quản lý bài tập</h2>
                     </div>
-                    <Button size="sm" style={{ width: 200 }} onClick={() => this.openModal()}>Thêm bài tập</Button>
+                    <div className="row" style={{ marginTop: 20 }}>
+                        <div className="row">
+                            <div className="col">
+                                <label>Tìm kiếm theo bài</label>
+                                <select style={{ marginLeft: 10 }} name="lessonId" value={lessonId} onChange={this.handleChange}>
+                                    <option>Hãy chọn bài</option>
+                                    {
+                                        lessons.map(l =>
+                                            <option value={l._id}>{l.title}</option>
+                                        )
+                                    }
+                                </select>
+                            </div>
+                            <Button size="sm" style={{ width: 100 }} onClick={() => this.searchExericse()}>Tìm kiếm</Button>
+                            <Button size="sm" style={{ width: 100, marginLeft: 20 }} onClick={() => this.loadExercises()}>Tất cả</Button>
+                        </div>
+                        <Button size="sm" style={{ width: 100, marginLeft: 50 }} onClick={() => this.openModal()}>Thêm bài tập</Button>
+                    </div>
                     <div style={{ marginTop: 20 }}>
                         <Table striped bordered hover>
                             <thead>
@@ -226,7 +293,8 @@ class ExerciseManagement extends React.Component {
                                     <th>Câu hỏi</th>
                                     <th>Các đáp án</th>
                                     <th>Đáp án đúng</th>
-                                    <th></th>
+                                    <th>Chỉnh sửa</th>
+                                    <th>Xóa</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -248,6 +316,11 @@ class ExerciseManagement extends React.Component {
                                         <td style={{ textAlign: 'center' }}>
                                             <Button size="sm" onClick={() => this.openForEdit(e._id)}>
                                                 <i class="fa fa-wrench" aria-hidden="true"></i>
+                                            </Button>
+                                        </td>
+                                        <td style={{ textAlign: 'center' }}>
+                                            <Button size="sm" variant="danger" onClick={() => this.deleteExercise(e._id)}>
+                                                <i class="fa fa-window-close" aria-hidden="true"></i>
                                             </Button>
                                         </td>
                                     </tr>
