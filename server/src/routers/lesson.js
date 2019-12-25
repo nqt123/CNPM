@@ -29,6 +29,14 @@ router.get("/lessons", async (req, res) => {
     res.status(400).send(error);
   }
 });
+router.get("/sections", async (req, res) => {
+  try {
+    const sections = await Lesson.find({}, { "section" : 1, _id : 0});
+    return res.status(200).send(sections);
+  } catch (e) {
+    return res.send({ error: e });
+  }
+});
 router.get("/lessons/:id", async (req, res) => {
   try {
     const lesson = await Lesson.findById(req.params.id);
