@@ -6,9 +6,7 @@ class TabKiemtra extends Component{
   {
     super(props)
     this.state={
-      cauhois:[],
-      test : [],
-      title : ""
+      cauhois:[]
     }
   }
   componentDidMount()
@@ -20,23 +18,39 @@ class TabKiemtra extends Component{
       }
     }).then(res => res.json())
       .then(respond => {
-        this.renderTest(respond)
         this.setState({
           cauhois:respond
-        })
+        });
       })
       .catch(err => console.log(err));
   }
-  renderTest = (data) => {
-    var bgchuong1=data.filter((cauhoi,index)=>{
-      return cauhoi.lesson.title=="Các nguyên tố hóa học và nước"
-    });
-    this.setState({
-      test : bgchuong1,
-      title : bgchuong1[0].lesson.title
-    })
-  }
   render(){
+    const {cauhois}=this.state;
+    var a="",b=[];
+    var bgchuong1=cauhois.filter((cauhoi,index)=>{
+      return cauhoi.lesson.title=="Tế bào nhân thực"
+    });
+    if(bgchuong1)
+    {
+      try{
+        a=bgchuong1[0].lesson.title;  
+        if(bgchuong1.length>0)
+        {
+          for(var i=0;i<bgchuong1.length;i++)
+          {
+              var q=bgchuong1[i].answers.map((answer,index)=>{
+              return(<p>{answer.content}</p>)
+            })
+
+              b.push(q)
+          }
+        }
+      }catch(e)
+      {
+
+      }
+    }
+    console.log(bgchuong1);
   return(
     <div className="tabbaigiang">
       <Tab.Container id="left-tabs-example" defaultActiveKey="first">
@@ -44,8 +58,8 @@ class TabKiemtra extends Component{
         <Col sm={4} className="traitabbaigiang" id="changescroll">
           <Nav variant="pills" className="flex-column">
             <span className="chuong">Chương I: Thành phần hóa học của tế bào</span>
-            <Nav.Item>
-              <Nav.Link eventKey="1" className="bai">{this.state.title}</Nav.Link>
+              <Nav.Item>
+              <Nav.Link eventKey="1" className="bai">{a}</Nav.Link>
             </Nav.Item>
             <span className="chuong">Chương II: Cấu trúc của tế bào</span>
             <Nav.Item>
@@ -112,6 +126,7 @@ class TabKiemtra extends Component{
         <Col sm={8} className="phaitabbaigiang">
           <Tab.Content >
         <Tab.Pane eventKey="1">
+          {b}
         </Tab.Pane>
           </Tab.Content>
         </Col>
