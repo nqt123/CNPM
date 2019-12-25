@@ -9,6 +9,7 @@ import { withStyles } from '@material-ui/core/styles';
 import styleshome from './../styleshome.js';
 import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 import logo from './../images/logo.png';
+import { BrowserRouter as Router, Route,Switch,Link } from "react-router-dom";
 class Footer extends Component{
   render(){
     var {classes}=this.props;

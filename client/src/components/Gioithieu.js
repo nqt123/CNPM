@@ -40,9 +40,6 @@ class Gioithieu extends Component{
               <Card.Text className={classes.textgioithieu}>
                 {gioithieu.content}
               </Card.Text>
-              <div className="text-center">
-                <Link href={gioithieu.link}><Button variant="success">Bắt đầu <ArrowForwardIcon /></Button></Link>
-              </div>
             </Card.Body>
           </Card>
         </Col>

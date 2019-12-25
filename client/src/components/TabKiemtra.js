@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { Tab,Row,Col,Nav} from 'react-bootstrap';
+import { Tab,Row,Col,Nav,Form} from 'react-bootstrap';
 import './../App.css';
 class TabKiemtra extends Component{
   constructor(props)
@@ -20,16 +20,37 @@ class TabKiemtra extends Component{
       .then(respond => {
         this.setState({
           cauhois:respond
-        })
+        });
       })
       .catch(err => console.log(err));
   }
   render(){
     const {cauhois}=this.state;
+    var a="",b=[];
     var bgchuong1=cauhois.filter((cauhoi,index)=>{
-      return cauhoi.lesson.title=="Các nguyên tố hóa học và nước"
+      return cauhoi.lesson.title=="Tế bào nhân thực"
     });
-    console.log(bgchuong1)
+    if(bgchuong1)
+    {
+      try{
+        a=bgchuong1[0].lesson.title;  
+        if(bgchuong1.length>0)
+        {
+          for(var i=0;i<bgchuong1.length;i++)
+          {
+              var q=bgchuong1[i].answers.map((answer,index)=>{
+              return(<p>{answer.content}</p>)
+            })
+
+              b.push(q)
+          }
+        }
+      }catch(e)
+      {
+
+      }
+    }
+    console.log(bgchuong1);
   return(
     <div className="tabbaigiang">
       <Tab.Container id="left-tabs-example" defaultActiveKey="first">
@@ -37,7 +58,9 @@ class TabKiemtra extends Component{
         <Col sm={4} className="traitabbaigiang" id="changescroll">
           <Nav variant="pills" className="flex-column">
             <span className="chuong">Chương I: Thành phần hóa học của tế bào</span>
-           
+              <Nav.Item>
+              <Nav.Link eventKey="1" className="bai">{a}</Nav.Link>
+            </Nav.Item>
             <span className="chuong">Chương II: Cấu trúc của tế bào</span>
             <Nav.Item>
               <Nav.Link eventKey="5" className="bai">Bài 5: Tế bào nhân sơ</Nav.Link>
@@ -102,7 +125,9 @@ class TabKiemtra extends Component{
         </Col>
         <Col sm={8} className="phaitabbaigiang">
           <Tab.Content >
-            
+        <Tab.Pane eventKey="1">
+          {b}
+        </Tab.Pane>
           </Tab.Content>
         </Col>
       </Row>
