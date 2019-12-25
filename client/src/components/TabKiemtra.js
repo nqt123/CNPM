@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import { Tab,Row,Col,Nav,Form} from 'react-bootstrap';
+import { Tab,Row,Col,Nav,Form,Button} from 'react-bootstrap';
 import './../App.css';
 class TabKiemtra extends Component{
   constructor(props)
@@ -11,7 +11,7 @@ class TabKiemtra extends Component{
   }
   componentDidMount()
   {
-    fetch('http://localhost:5000/exercises',{
+    fetch('https://nqt-api-cnpm.herokuapp.com/exercises',{
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -26,19 +26,77 @@ class TabKiemtra extends Component{
   }
   render(){
     const {cauhois}=this.state;
-    var a="",b=[],question=[];
+    var a="",b=[],question=[],titlec2,c=[],e,f=[];
     var bgchuong1=cauhois.filter((cauhoi,index)=>{
       return cauhoi.lesson.title=="Tế bào nhân thực"
     });
+    var bgchuong2=cauhois.filter((cauhoi,index)=>{
+      return cauhoi.lesson.title=="Các nguyên tố hóa học và nước"
+    });
+    if(bgchuong2)
+    {
+      try{
+        a=bgchuong2[0].lesson.title;  
+        if(bgchuong2.length>0)
+        {
+          for(var i=0;i<bgchuong2.length;i++)
+          {
+            b.push(bgchuong2[i].content);
+            for(let j=0;j<bgchuong2[i].answers.length;j++)
+            {
+                var q=<Form.Check
+                type="radio"
+                label={bgchuong2[i].answers[j].content}
+                name={bgchuong2[i]._id}
+                value={bgchuong2[i].answers[j].number}
+              />
+              b.push(q)
+            }
+          }
+        }
+      }catch(e)
+      {
+
+      }
+    }
+    var bgchuong3=cauhois.filter((cauhoi,index)=>{
+      return cauhoi.lesson.title=="Tế bào nhân thực"
+    });
+    if(bgchuong3)
+    {
+      try{
+        e=bgchuong3[0].lesson.title;  
+        if(bgchuong3.length>0)
+        {
+          for(var i=0;i<bgchuong3.length;i++)
+          {
+            f.push(bgchuong3[i].content);
+            for(let j=0;j<bgchuong2[i].answers.length;j++)
+            {
+                var q=<Form.Check
+                type="radio"
+                label={bgchuong2[i].answers[j].content}
+                name={bgchuong2[i]._id}
+                value={bgchuong2[i].answers[j].number}
+              />
+              f.push(q)
+            }
+          }
+        }
+      }catch(e)
+      {
+
+      }
+    }
     if(bgchuong1)
     {
       try{
-        a=bgchuong1[0].lesson.title;  
+        titlec2=bgchuong2[0].lesson.title;  
         if(bgchuong1.length>0)
         {
           for(var i=0;i<bgchuong1.length;i++)
           {
-            b.push(bgchuong1[i].content);
+            c.push(bgchuong1[i].content);
             for(let j=0;j<bgchuong1[i].answers.length;j++)
             {
                 var q=<Form.Check
@@ -47,7 +105,7 @@ class TabKiemtra extends Component{
                 name={bgchuong1[i]._id}
                 value={bgchuong1[i].answers[j].number}
               />
-              b.push(q)
+              c.push(q)
             }
           }
         }
@@ -65,7 +123,10 @@ class TabKiemtra extends Component{
           <Nav variant="pills" className="flex-column">
             <span className="chuong">Chương I: Thành phần hóa học của tế bào</span>
               <Nav.Item>
-              <Nav.Link eventKey="1" className="bai">{a}</Nav.Link>
+              <Nav.Link eventKey="1" className="bai">{titlec2}</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="2" className="bai">{e}</Nav.Link>
             </Nav.Item>
             <span className="chuong">Chương II: Cấu trúc của tế bào</span>
             <Nav.Item>
@@ -132,7 +193,12 @@ class TabKiemtra extends Component{
         <Col sm={8} className="phaitabbaigiang">
           <Tab.Content >
         <Tab.Pane eventKey="1">
-          {b}
+          {c}
+          <Button variant="success" onClick={this.handleClick}>Trả lời</Button>
+        </Tab.Pane>
+        <Tab.Pane eventKey="2">
+          {f}
+          <Button variant="success" onClick={this.handleClick}>Trả lời</Button>
         </Tab.Pane>
           </Tab.Content>
         </Col>

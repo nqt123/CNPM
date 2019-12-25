@@ -1,7 +1,7 @@
 
 const styleshome=theme=>({
 	paper:{
-    backgroundImage:"url(https://www.bizcover.co.nz/wp-content/uploads/2018/08/pexels-photo-733856.jpg)",
+    backgroundImage:"url(https://cdn02.static-adayroi.com/0/2019/08/22/1566448842556_8527291.jpg)",
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover',
     backgroundPosition: 'center ',

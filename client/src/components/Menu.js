@@ -58,19 +58,10 @@ class Menus extends Component{
             <Nav className="ml-auto">
               <MenuLink label="Trang chủ" to='/' activeOnlyWhenExact={true} disable={false}/>
               <MenuLink label="Bài giảng" to='/bai-giang' activeOnlyWhenExact={false} disable={false}/>
-              <MenuLink label="Học liệu" to='/hoc-lieu' activeOnlyWhenExact={false} disable={false}/>
               <MenuLink label="Kiểm tra" to='/kiem-tra' activeOnlyWhenExact={false} disable={check}/>
               {result}
               <MenuLink label="Giải trí" to='/giai-tri' activeOnlyWhenExact={false} disable={false}/>
             </Nav>
-            <Form inline>
-              <InputGroup>
-                  <FormControl type="text" placeholder="Search..." className="ml-sm-2" size="sm"/>
-                   <InputGroup.Append>
-                      <Button size="sm"><i className="fa fa-search" aria-hidden="true"></i></Button>
-                   </InputGroup.Append>
-              </InputGroup>
-            </Form>
           </Navbar.Collapse>
         </Navbar>
     </React.Fragment>
