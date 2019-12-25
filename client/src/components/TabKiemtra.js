@@ -26,7 +26,7 @@ class TabKiemtra extends Component{
   }
   render(){
     const {cauhois}=this.state;
-    var a="",b=[];
+    var a="",b=[],question=[];
     var bgchuong1=cauhois.filter((cauhoi,index)=>{
       return cauhoi.lesson.title=="Tế bào nhân thực"
     });
@@ -38,11 +38,17 @@ class TabKiemtra extends Component{
         {
           for(var i=0;i<bgchuong1.length;i++)
           {
-              var q=bgchuong1[i].answers.map((answer,index)=>{
-              return(<p>{answer.content}</p>)
-            })
-
+            b.push(bgchuong1[i].content);
+            for(let j=0;j<bgchuong1[i].answers.length;j++)
+            {
+                var q=<Form.Check
+                type="radio"
+                label={bgchuong1[i].answers[j].content}
+                name={bgchuong1[i]._id}
+                value={bgchuong1[i].answers[j].number}
+              />
               b.push(q)
+            }
           }
         }
       }catch(e)

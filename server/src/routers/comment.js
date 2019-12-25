@@ -7,8 +7,18 @@ router.get("/comments", auth, async (req, res) => {
   if (req.user.position != "Admin") {
     return res.status(401).send({ error: "You are not Authorized" });
   }
+  const query = {};
+  if (req.query.lessonId) {
+    query.lessonId = req.query.lessonId;
+  }
+  if (req.query.exerciseId) {
+    query.exerciseId = req.query.exerciseId;
+  }
+  if (req.query.userId) {
+    query.userId = req.query.userId;
+  }
   try {
-    await Comment.find({})
+    await Comment.find(query)
       .populate("exerciseId lessonId userId")
       .exec(function(error, comments) {
         if (!comments) {
